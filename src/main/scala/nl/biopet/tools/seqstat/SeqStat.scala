@@ -54,12 +54,15 @@ object SeqStat extends ToolCommand {
   // 'nuc' are the nucleotides 'ACTGN', the max ASCII value for this is T, pre-init the ArrayBuffer to this value
   // as we don't expect the have other 'higher' numbered Nucleotides for now.
   case class BaseStat(qual: mutable.ArrayBuffer[Long] = mutable.ArrayBuffer(),
-                      nucs: mutable.ArrayBuffer[Long] = mutable.ArrayBuffer.fill('T'.toInt + 1)(0))
+                      nucs: mutable.ArrayBuffer[Long] =
+                        mutable.ArrayBuffer.fill('T'.toInt + 1)(0))
 
-  case class ReadStat(qual: mutable.ArrayBuffer[Long] = mutable.ArrayBuffer(),
-                      nucs: mutable.ArrayBuffer[Long] = mutable.ArrayBuffer.fill('T'.toInt + 1)(0),
-                      var withN: Long = 0L,
-                      lengths: mutable.ArrayBuffer[Int] = mutable.ArrayBuffer())
+  case class ReadStat(
+      qual: mutable.ArrayBuffer[Long] = mutable.ArrayBuffer(),
+      nucs: mutable.ArrayBuffer[Long] =
+        mutable.ArrayBuffer.fill('T'.toInt + 1)(0),
+      var withN: Long = 0L,
+      lengths: mutable.ArrayBuffer[Int] = mutable.ArrayBuffer())
 
   val baseStats: mutable.ArrayBuffer[BaseStat] = mutable.ArrayBuffer()
   val readStats: ReadStat = ReadStat()
@@ -77,12 +80,13 @@ object SeqStat extends ToolCommand {
     // Adjust/expand the length of baseStat case classes to the size of current
     // read if the current list is not long enough to store the data
     if (baseStats.length < record.length) {
-      baseStats ++= mutable.ArrayBuffer.fill(record.length - baseStats.length)(BaseStat())
+      baseStats ++= mutable.ArrayBuffer.fill(record.length - baseStats.length)(
+        BaseStat())
     }
 
     if (readStats.lengths.length <= record.length)
-      readStats.lengths ++= mutable.ArrayBuffer.fill(record.length - readStats.lengths.length + 1)(
-        0)
+      readStats.lengths ++= mutable.ArrayBuffer.fill(
+        record.length - readStats.lengths.length + 1)(0)
 
     val readQuality = record.getBaseQualityString
     val readNucleotides = record.getReadString
@@ -102,7 +106,8 @@ object SeqStat extends ToolCommand {
     // implicit conversion to Int using foldLeft(0)
     val avgQual: Int = readQuality.sum / readQuality.length
     if (readStats.qual.length <= avgQual) {
-      readStats.qual ++= mutable.ArrayBuffer.fill(avgQual - readStats.qual.length + 1)(0)
+      readStats.qual ++= mutable.ArrayBuffer.fill(
+        avgQual - readStats.qual.length + 1)(0)
     }
     readStats.qual(avgQual) += 1
     if (readNucleotides.contains("N")) readStats.withN += 1L
@@ -134,15 +139,21 @@ object SeqStat extends ToolCommand {
       // list all qualities at this particular position `pos`
       // fix the length of `quals`
       if (quals.length <= baseStats(pos).qual.length) {
-        quals ++= mutable.ArrayBuffer.fill(baseStats(pos).qual.length - quals.length)(0)
+        quals ++= mutable.ArrayBuffer.fill(
+          baseStats(pos).qual.length - quals.length)(0)
       }
       if (nucs.length <= baseStats(pos).nucs.length) {
-        nucs ++= mutable.ArrayBuffer.fill(baseStats(pos).nucs.length - nucs.length)(0)
+        nucs ++= mutable.ArrayBuffer.fill(
+          baseStats(pos).nucs.length - nucs.length)(0)
       }
       // count into the quals
-      baseStats(pos).qual.zipWithIndex foreach { case (value, index) => quals(index) += value }
+      baseStats(pos).qual.zipWithIndex foreach {
+        case (value, index) => quals(index) += value
+      }
       // count N into nucs
-      baseStats(pos).nucs.zipWithIndex foreach { case (value, index) => nucs(index) += value }
+      baseStats(pos).nucs.zipWithIndex foreach {
+        case (value, index) => nucs(index) += value
+      }
     }
     detectPhredEncoding(quals)
     logger.debug(
@@ -150,24 +161,29 @@ object SeqStat extends ToolCommand {
 
     nucleotideHistoMap = nucs.toList
       .foldLeft(mutable.Map[Char, Long]())(
-        (output, nucleotideCount) => output + (output.size.toChar -> nucleotideCount)
+        (output, nucleotideCount) =>
+          output + (output.size.toChar -> nucleotideCount)
       )
       // ensure bases: `ACTGN` is always reported even having a zero count.
       // Other chars might be counted also, these are also reported
-      .retain((nucleotide, count) => count > 0 || "ACTGN".contains(nucleotide.toString))
+      .retain((nucleotide, count) =>
+        count > 0 || "ACTGN".contains(nucleotide.toString))
 
     baseQualHistogram = quals.slice(phredEncoding.id, quals.size)
-    baseQualHistogram ++= mutable.ArrayBuffer.fill(reportValues.max + 1 - baseQualHistogram.size)(
-      0L)
+    baseQualHistogram ++= mutable.ArrayBuffer.fill(
+      reportValues.max + 1 - baseQualHistogram.size)(0L)
 
-    readQualHistogram = readStats.qual.slice(phredEncoding.id, readStats.qual.size)
-    readQualHistogram ++= mutable.ArrayBuffer.fill(reportValues.max + 1 - readQualHistogram.size)(
-      0L)
+    readQualHistogram =
+      readStats.qual.slice(phredEncoding.id, readStats.qual.size)
+    readQualHistogram ++= mutable.ArrayBuffer.fill(
+      reportValues.max + 1 - readQualHistogram.size)(0L)
 
     readQualGTEHistoMap = readQualHistogram.indices
       .foldLeft(mutable.Map[Int, Long]())(
         (output, index) => {
-          output + (output.keys.size -> readQualHistogram.slice(index, readQualHistogram.size).sum)
+          output + (output.keys.size -> readQualHistogram
+            .slice(index, readQualHistogram.size)
+            .sum)
         }
       )
 
@@ -176,31 +192,30 @@ object SeqStat extends ToolCommand {
   def reportMap(fastqPath: File): Map[String, Any] = {
     Map(
       ("files",
-        Map(
-          ("fastq", Map(("path", fastqPath.getAbsolutePath)))
-        )),
+       Map(
+         ("fastq", Map(("path", fastqPath.getAbsolutePath)))
+       )),
       ("stats",
-        Map(
-          ("bases",
-            Map(
-              ("num_total", nucleotideHistoMap.values.sum),
-              ("num_qual", baseQualHistogram.toList),
-              ("nucleotides", nucleotideHistoMap.toMap)
-            )),
-          ("reads",
-            Map(
-              ("num_with_n", readStats.withN),
-              ("num_total", readStats.qual.sum),
-              ("len_min", readStats.lengths.takeWhile(_ == 0).length),
-              ("len_max", readStats.lengths.length - 1),
-              ("num_avg_qual_gte", readQualGTEHistoMap.toMap),
-              ("qual_encoding", phredEncoding.toString.toLowerCase),
-              ("len_histogram", readStats.lengths.toList)
-            ))
-        ))
+       Map(
+         ("bases",
+          Map(
+            ("num_total", nucleotideHistoMap.values.sum),
+            ("num_qual", baseQualHistogram.toList),
+            ("nucleotides", nucleotideHistoMap.toMap)
+          )),
+         ("reads",
+          Map(
+            ("num_with_n", readStats.withN),
+            ("num_total", readStats.qual.sum),
+            ("len_min", readStats.lengths.takeWhile(_ == 0).length),
+            ("len_max", readStats.lengths.length - 1),
+            ("num_avg_qual_gte", readQualGTEHistoMap.toMap),
+            ("qual_encoding", phredEncoding.toString.toLowerCase),
+            ("len_histogram", readStats.lengths.toList)
+          ))
+       ))
     )
   }
-
 
   def main(args: Array[String]): Unit = {
     val parser = new ArgsParser(toolName)
