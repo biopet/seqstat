@@ -3,7 +3,7 @@ package nl.biopet.tools.seqstat
 import java.io.{File, PrintWriter}
 
 import htsjdk.samtools.fastq.{FastqReader, FastqRecord}
-import nl.biopet.utils.config.Conversions
+import nl.biopet.utils.conversions
 import nl.biopet.utils.tool.ToolCommand
 
 import scala.collection.immutable.Map
@@ -232,9 +232,9 @@ object SeqStat extends ToolCommand {
     cmdArgs.outputJson match {
       case Some(file) =>
         val writer = new PrintWriter(file)
-        writer.println(Conversions.mapToJson(report))
+        writer.println(conversions.mapToJson(report))
         writer.close()
-      case _ => println(Conversions.mapToJson(report))
+      case _ => println(conversions.mapToJson(report))
     }
 
     logger.info("Done")
