@@ -34,10 +34,10 @@ object SeqStat extends ToolCommand {
     */
   def detectPhredEncoding(quals: mutable.ArrayBuffer[Long]): Unit = {
     // substract 1 on high value, because we start from index 0
-    val qualLowBoundery = quals.takeWhile(_ == 0).length
-    val qualHighBoundery = quals.length - 1
+    val qualLowBoundary = quals.takeWhile(_ == 0).length
+    val qualHighBoundary = quals.length - 1
 
-    (qualLowBoundery < 59, qualHighBoundery > 74) match {
+    (qualLowBoundary < 59, qualHighBoundary > 74) match {
       case (false, true) => phredEncoding = FqEncoding.Solexa
       // TODO: check this later on
       // complex case, we cannot tell wheter this is a sanger or solexa
