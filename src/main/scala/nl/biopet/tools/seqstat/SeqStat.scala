@@ -10,7 +10,7 @@ import scala.collection.immutable.Map
 import scala.collection.mutable
 import scala.collection.JavaConverters._
 
-object SeqStat extends ToolCommand {
+object SeqStat extends ToolCommand[Args] {
 
   var phredEncoding: FqEncoding.Value = FqEncoding.Sanger
 
