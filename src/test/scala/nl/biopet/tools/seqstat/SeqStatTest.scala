@@ -13,6 +13,7 @@ import org.testng.annotations.{DataProvider, Test}
 import scala.collection.JavaConverters._
 
 class SeqStatTest extends ToolTest[Args] with MockitoSugar {
+  def toolCommand: SeqStat.type = SeqStat
   @Test
   def testNoArgs(): Unit = {
     intercept[IllegalArgumentException] {

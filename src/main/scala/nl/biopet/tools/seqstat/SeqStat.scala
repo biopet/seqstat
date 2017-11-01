@@ -11,6 +11,8 @@ import scala.collection.mutable
 import scala.collection.JavaConverters._
 
 object SeqStat extends ToolCommand[Args] {
+  def emptyArgs: Args = Args()
+  def argsParser = new ArgsParser(toolName)
 
   var phredEncoding: FqEncoding.Value = FqEncoding.Sanger
 
