@@ -10,7 +10,9 @@ import scala.collection.immutable.Map
 import scala.collection.mutable
 import scala.collection.JavaConverters._
 
-object SeqStat extends ToolCommand {
+object SeqStat extends ToolCommand[Args] {
+  def emptyArgs: Args = Args()
+  def argsParser = new ArgsParser(toolName)
 
   var phredEncoding: FqEncoding.Value = FqEncoding.Sanger
 
@@ -218,9 +220,7 @@ object SeqStat extends ToolCommand {
   }
 
   def main(args: Array[String]): Unit = {
-    val parser = new ArgsParser(toolName)
-    val cmdArgs =
-      parser.parse(args, Args()).getOrElse(throw new IllegalArgumentException)
+    val cmdArgs = cmdArrayToArgs(args)
 
     logger.info("Start")
 

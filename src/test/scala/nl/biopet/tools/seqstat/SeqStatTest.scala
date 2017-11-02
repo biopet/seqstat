@@ -5,14 +5,15 @@ import java.util
 
 import org.mockito.Mockito.when
 import htsjdk.samtools.fastq.{FastqReader, FastqRecord}
-import nl.biopet.test.BiopetTest
+import nl.biopet.utils.test.tools.ToolTest
 import org.mockito.stubbing.OngoingStubbing
 import org.scalatest.mock.MockitoSugar
 import org.testng.annotations.{DataProvider, Test}
 
 import scala.collection.JavaConverters._
 
-class SeqStatTest extends BiopetTest with MockitoSugar {
+class SeqStatTest extends ToolTest[Args] with MockitoSugar {
+  def toolCommand: SeqStat.type = SeqStat
   @Test
   def testNoArgs(): Unit = {
     intercept[IllegalArgumentException] {
