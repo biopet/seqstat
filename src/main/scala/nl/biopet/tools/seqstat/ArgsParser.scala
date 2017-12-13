@@ -10,13 +10,13 @@ class ArgsParser(cmdName: String) extends AbstractOptParser[Args](cmdName) {
           |$cmdName - Summarize FastQ
       """.stripMargin)
 
-  opt[File]('i', "fastq") required () unbounded () valueName "<fastq>" action {
+  opt[File]('i', "fastq") required () valueName "<fastq>" action {
     (x, c) =>
       c.copy(fastq = x)
   } validate { x =>
     if (x.exists) success else failure("FASTQ file not found")
   } text "FastQ file to generate stats from"
-  opt[File]('o', "output") unbounded () valueName "<json>" action { (x, c) =>
+  opt[File]('o', "output") valueName "<json>" action { (x, c) =>
     c.copy(outputJson = Some(x))
   } text "File to write output to, if not supplied output go to stdout"
 }
