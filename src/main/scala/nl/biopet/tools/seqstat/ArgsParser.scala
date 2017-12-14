@@ -4,7 +4,7 @@ import java.io.File
 
 import nl.biopet.utils.tool.AbstractOptParser
 
-class ArgsParser(cmdName: String) extends AbstractOptParser[Args](cmdName) {
+class ArgsParser(cmdName: ToolCommand[Args]) extends AbstractOptParser[Args](cmdName) {
 
   head(s"""
           |$cmdName - Summarize FastQ
