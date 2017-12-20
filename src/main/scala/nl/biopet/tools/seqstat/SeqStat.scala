@@ -239,4 +239,20 @@ object SeqStat extends ToolCommand[Args] {
 
     logger.info("Done")
   }
+
+  def descriptionText: String =
+    """
+      |SeqStats outputs the stats on a FASTQ file.
+    """.stripMargin
+
+  def manualText: String =
+    """
+      |By default stats are outputted to stdout. If an output file
+      |is specified it writes to the file in json format.
+    """.stripMargin
+
+  def exampleText: String =
+    s"""
+       |${example("-i", "input.fastq", "-o", "output.json")}
+     """.stripMargin
 }
