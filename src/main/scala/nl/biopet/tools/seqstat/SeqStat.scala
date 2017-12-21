@@ -243,6 +243,7 @@ object SeqStat extends ToolCommand[Args] {
   def main(args: Array[String]): Unit = {
     val cmdArgs = cmdArrayToArgs(args)
 
+    require(cmdArgs.fastq.exists(), "FASTQ file not found")
     logger.info("Start")
 
     seqStat(new FastqReader(cmdArgs.fastq))
@@ -263,17 +264,38 @@ object SeqStat extends ToolCommand[Args] {
 
   def descriptionText: String =
     """
-      |SeqStats outputs the stats on a FASTQ file.
+      |SeqStats outputs several stats on a FASTQ file.
+      |
+      |Outputted stats:
+      |
+      |- Bases
+      |   - Total number
+      |   - Base qualities, with the number of bases having that quality
+      |   - Number of each nucleotide
+      |- Reads
+      |   - Total number
+      |   - Number of reads with 'N' bases
+      |   - minimum length
+      |   - maximum length
+      |   - A histogram of the average base qualities
+      |   - The quality encoding (Sanger, solexa etc.)
+      |   - A histogram of the read lengths.
     """.stripMargin
 
   def manualText: String =
     """
-      |By default stats are outputted to stdout. If an output file
+      |By default stats are outputted to stdout in json format. If an output file
       |is specified it writes to the file in json format.
     """.stripMargin
 
   def exampleText: String =
     s"""
+       |To run $toolName and save the output in a JSON file:
+       |
        |${example("-i", "input.fastq", "-o", "output.json")}
+       |
+       |To run $toolName and wirte the output to stdout:
+       |
+       |${example("-i", "input.fastq")}
      """.stripMargin
 }
