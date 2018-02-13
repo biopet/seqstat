@@ -69,7 +69,7 @@ object SeqStat extends ToolCommand[Args] {
       case (true, true) => phredEncoding = FqEncoding.Solexa
       // this is definite a sanger sequence, the lower end is sanger only
       case (true, false) => phredEncoding = FqEncoding.Sanger
-      case (_, _) => phredEncoding = FqEncoding.Unknown
+      case (_, _)        => phredEncoding = FqEncoding.Unknown
     }
   }
 
@@ -80,12 +80,11 @@ object SeqStat extends ToolCommand[Args] {
                       nucs: mutable.ArrayBuffer[Long] =
                         mutable.ArrayBuffer.fill('T'.toInt + 1)(0))
 
-  case class ReadStat(
-      qual: mutable.ArrayBuffer[Long] = mutable.ArrayBuffer(),
-      nucs: mutable.ArrayBuffer[Long] =
-        mutable.ArrayBuffer.fill('T'.toInt + 1)(0),
-      var withN: Long = 0L,
-      lengths: mutable.ArrayBuffer[Int] = mutable.ArrayBuffer())
+  case class ReadStat(qual: mutable.ArrayBuffer[Long] = mutable.ArrayBuffer(),
+                      nucs: mutable.ArrayBuffer[Long] =
+                        mutable.ArrayBuffer.fill('T'.toInt + 1)(0),
+                      var withN: Long = 0L,
+                      lengths: mutable.ArrayBuffer[Int] = mutable.ArrayBuffer())
 
   val baseStats: mutable.ArrayBuffer[BaseStat] = mutable.ArrayBuffer()
   val readStats: ReadStat = ReadStat()
