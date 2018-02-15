@@ -1,3 +1,24 @@
+/*
+ * Copyright (c) 2014 Biopet
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of
+ * this software and associated documentation files (the "Software"), to deal in
+ * the Software without restriction, including without limitation the rights to
+ * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+ * the Software, and to permit persons to whom the Software is furnished to do so,
+ * subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+ * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+ * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+ * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+ * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
+
 package nl.biopet.tools.seqstat
 
 import java.io.File
@@ -24,10 +45,10 @@ class SeqStatTest extends ToolTest[Args] with MockitoSugar {
   // Helper functions to create iterator over FastqRecords given its IDs as Ints
   // Record with 'A' and Qual==39 (SangerEncoding)
   private def recordsOver(ids: String*): java.util.Iterator[FastqRecord] =
-  ids
-    .map(x => new FastqRecord(x, "ACGTN", "", "HIBC!"))
-    .toIterator
-    .asJava
+    ids
+      .map(x => new FastqRecord(x, "ACGTN", "", "HIBC!"))
+      .toIterator
+      .asJava
 
   @DataProvider(name = "mockReaderProvider")
   def mockReaderProvider() =
@@ -35,12 +56,17 @@ class SeqStatTest extends ToolTest[Args] with MockitoSugar {
       Array(mock[FastqReader])
     )
 
-  @Test(dataProvider = "mockReaderProvider", groups = Array("sanger"), singleThreaded = true)
-  def testDefault(fqMock: FastqReader): OngoingStubbing[util.Iterator[FastqRecord]] = {
+  @Test(dataProvider = "mockReaderProvider",
+        groups = Array("sanger"),
+        singleThreaded = true)
+  def testDefault(
+      fqMock: FastqReader): OngoingStubbing[util.Iterator[FastqRecord]] = {
     when(fqMock.iterator) thenReturn recordsOver("1", "2", "3")
   }
 
-  @Test(dataProvider = "mockReaderProvider", groups = Array("read"), singleThreaded = true)
+  @Test(dataProvider = "mockReaderProvider",
+        groups = Array("read"),
+        singleThreaded = true)
   def testSeqCountReads(fqMock: FastqReader): Unit = {
     when(fqMock.iterator) thenReturn recordsOver("1", "2", "3", "4", "5")
 
@@ -50,9 +76,9 @@ class SeqStatTest extends ToolTest[Args] with MockitoSugar {
   }
 
   @Test(dataProvider = "mockReaderProvider",
-    groups = Array("phredscore"),
-    singleThreaded = true,
-    dependsOnGroups = Array("read"))
+        groups = Array("phredscore"),
+        singleThreaded = true,
+        dependsOnGroups = Array("read"))
   def testEncodingDetectionSanger(fqMock: FastqReader): Unit = {
 
     val seqstat = SeqStat
@@ -62,9 +88,9 @@ class SeqStatTest extends ToolTest[Args] with MockitoSugar {
   }
 
   @Test(dataProvider = "mockReaderProvider",
-    groups = Array("nucleocount"),
-    singleThreaded = true,
-    dependsOnGroups = Array("phredscore"))
+        groups = Array("nucleocount"),
+        singleThreaded = true,
+        dependsOnGroups = Array("phredscore"))
   def testEncodingNucleotideCount(fqMock: FastqReader): Unit = {
 
     SeqStat.nucleotideHistoMap('N') shouldEqual 5
@@ -75,9 +101,9 @@ class SeqStatTest extends ToolTest[Args] with MockitoSugar {
   }
 
   @Test(dataProvider = "mockReaderProvider",
-    groups = Array("basehistogram"),
-    singleThreaded = true,
-    dependsOnGroups = Array("nucleocount"))
+        groups = Array("basehistogram"),
+        singleThreaded = true,
+        dependsOnGroups = Array("nucleocount"))
   def testEncodingBaseHistogram(fqMock: FastqReader): Unit = {
 
     SeqStat.baseQualHistogram(40) shouldEqual 5
@@ -88,9 +114,9 @@ class SeqStatTest extends ToolTest[Args] with MockitoSugar {
   }
 
   @Test(dataProvider = "mockReaderProvider",
-    groups = Array("report"),
-    singleThreaded = true,
-    dependsOnGroups = Array("basehistogram"))
+        groups = Array("report"),
+        singleThreaded = true,
+        dependsOnGroups = Array("basehistogram"))
   def testReportOutputScheme(fqMock: FastqReader): Unit = {
     when(fqMock.getFile) thenReturn new File("/tmp/test.fq")
     when(fqMock.iterator) thenReturn recordsOver("1", "2", "3", "4", "5")
@@ -105,9 +131,9 @@ class SeqStatTest extends ToolTest[Args] with MockitoSugar {
   }
 
   @Test(dataProvider = "mockReaderProvider",
-    groups = Array("check_readstats"),
-    singleThreaded = true,
-    dependsOnGroups = Array("report"))
+        groups = Array("check_readstats"),
+        singleThreaded = true,
+        dependsOnGroups = Array("report"))
   def testReadStatsObject(fqMock: FastqReader): Unit = {
     when(fqMock.getFile) thenReturn new File("/tmp/test.fq")
     when(fqMock.iterator) thenReturn recordsOver("1", "2", "3", "4", "5")
