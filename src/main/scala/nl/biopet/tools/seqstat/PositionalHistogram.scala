@@ -1,0 +1,124 @@
+package nl.biopet.tools.seqstat
+
+import nl.biopet.utils.Histogram
+import play.api.libs.json.{JsArray, JsNumber, JsObject, JsValue}
+
+import scala.collection.mutable
+import scala.math.BigDecimal
+
+class PositionalHistogram(
+    _map: mutable.Map[Char, Histogram[Int]] = mutable.Map()) {
+
+  protected val map: mutable.Map[Char, Histogram[Int]] = _map
+
+  /** This will add a read to the histogram, this can be nucleotides of the qual string */
+  def addRead(read: String): Unit = {
+    read.zipWithIndex.foreach {
+      case (char, idx) =>
+        if (!map.contains(char)) map += char -> new Histogram[Int]()
+        map(char).add(idx)
+    }
+  }
+
+  /** With this method 2 [[PositionalHistogram]]s can be combined */
+  def +=(other: PositionalHistogram): PositionalHistogram = {
+    other.map.foreach {
+      case (key, value) =>
+        map.get(key) match {
+          case Some(m) => map += key -> new Histogram((m += value).countsMap)
+          case _       => map += key -> value
+        }
+    }
+    this
+  }
+
+  /**
+    * This returns a json object from this histogram
+    *
+    * {
+    *   "<value>": [<count>]
+    * }
+    *
+    */
+  def toJson: JsObject = {
+    JsObject(map.map {
+      case (char, hist) =>
+        val map = hist.countsMap
+        val keys = 0 to map.keys.toList.sorted.max
+        char.toString -> JsArray(keys.map(x => JsNumber(BigDecimal(map.getOrElse(x, 0L)))))
+    }.toSeq)
+  }
+
+  /** This will return a a histogram of the length of all reads */
+  def lengthHistogram: Histogram[Int] = {
+    val keys = map
+      .flatMap {
+        case (_, hist) =>
+          hist.countsMap.keySet
+      }
+      .toList
+      .distinct
+      .sorted
+      .reverse
+    keys.foldLeft(new Histogram[Int]()) {
+      case (a, b) =>
+        val total = a.total
+        val current = map.flatMap { case (_, hist) => hist.get(b) }.sum
+        a.addMulti(b + 1, current - total)
+        a
+    }
+  }
+
+  /** This will give a single histogram for the value, this will lose the positional information */
+  def valueHistogram: Histogram[Char] = {
+    new Histogram(map.map { case (k, v) => k -> v.total }.toMap)
+  }
+
+  /** Returns total read count */
+  def totalReads: Long = {
+    map.flatMap { case (_, hist) => hist.get(0) }.sum
+  }
+
+  /** Returns total base count */
+  def totalBases: Long = {
+    map.map { case (_, hist) => hist.total }.sum
+  }
+}
+
+object PositionalHistogram {
+
+  /** Convert JsObject to a [[PositionalHistogram]] */
+  def fromJson(content: JsObject): PositionalHistogram = {
+    new PositionalHistogram(mutable.Map(content.value.map {
+      case (char, hist) =>
+        val key = char.headOption match {
+          case Some(k) => k
+          case _       => throw new IllegalStateException("Empty json key found")
+        }
+        if (char.length != 1)
+          throw new IllegalStateException(
+            "key can only have a single character")
+
+        key -> new Histogram(
+          hist
+            .as[JsArray]
+            .value
+            .zipWithIndex
+            .map {
+              case (value, idx) =>
+                idx -> value.as[Long]
+            }
+            .toMap)
+    }.toSeq: _*))
+  }
+
+  /** Convert JsObject to a [[PositionalHistogram]] */
+  def fromJson(content: JsValue): PositionalHistogram = {
+    content.asOpt[JsObject] match {
+      case Some(c) => fromJson(c)
+      case _ =>
+        throw new IllegalStateException(
+          "Json value must be a object to be a PositionalHistogram")
+    }
+  }
+}
