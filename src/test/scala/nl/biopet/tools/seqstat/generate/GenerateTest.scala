@@ -21,11 +21,10 @@
 
 package nl.biopet.tools.seqstat.generate
 
-import nl.biopet.utils.test.tools.ToolTest
-import org.scalatest.mock.MockitoSugar
+import nl.biopet.test.BiopetTest
 import org.testng.annotations.Test
 
-class GenerateTest extends ToolTest[Args] with MockitoSugar {
+class GenerateTest extends BiopetTest {
   def toolCommand: Generate.type = Generate
   @Test
   def testNoArgs(): Unit = {

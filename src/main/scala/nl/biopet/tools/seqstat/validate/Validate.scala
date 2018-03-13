@@ -28,9 +28,9 @@ object Validate extends ToolCommand[Args] {
   def argsParser = new ArgsParser(this)
 
   def main(args: Array[String]): Unit = {
-    ???
     val cmdArgs = cmdArrayToArgs(args)
 
+    ???
     //TODO
 
     logger.info("Done")
@@ -50,5 +50,4 @@ object Validate extends ToolCommand[Args] {
     s"""
        |
      """.stripMargin
-
 }

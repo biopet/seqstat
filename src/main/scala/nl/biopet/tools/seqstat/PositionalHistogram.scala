@@ -155,13 +155,12 @@ object PositionalHistogram {
   }
 
   def fromMap(map: Map[String, Array[Long]]): PositionalHistogram = {
-    new PositionalHistogram(
-      mutable.Map() ++ map.map {
-        case (k, v) =>
-          k.head -> new Histogram(v.zipWithIndex.map {
-            case (l, idx) => idx -> l
-          }.toMap)
-      })
+    new PositionalHistogram(mutable.Map() ++ map.map {
+      case (k, v) =>
+        k.head -> new Histogram(v.zipWithIndex.map {
+          case (l, idx) => idx -> l
+        }.toMap)
+    })
   }
 
   def empty: PositionalHistogram = new PositionalHistogram()

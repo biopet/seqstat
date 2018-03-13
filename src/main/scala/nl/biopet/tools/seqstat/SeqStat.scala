@@ -24,46 +24,12 @@ package nl.biopet.tools.seqstat
 import nl.biopet.tools.seqstat.generate.Generate
 import nl.biopet.tools.seqstat.merge.Merge
 import nl.biopet.utils.tool.ToolCommand
+import nl.biopet.utils.tool.multi.MultiToolCommand
 
-object SeqStat extends ToolCommand[Args] {
-  def emptyArgs: Args = Args()
-  def argsParser = new ArgsParser(this)
+object SeqStat extends MultiToolCommand {
 
-  def main(args: Array[String]): Unit = {
-    val cmdArgs = cmdArrayToArgs(args)
-
-    cmdArgs.mode.map(_.toLowerCase) match {
-      case Some(mode) =>
-        modes.find(_.toolName.toLowerCase == toolName) match {
-          case Some(tool) => tool.main(cmdArgs.toolArgs)
-          case _ =>
-            logger.error(s"Tool '$toolName' not found")
-            printToolList()
-        }
-      case _ => printToolList()
-    }
-  }
-
-  def printToolList(): Unit = {
-    argsParser.usage.split("\n").foreach(logger.info)
-    logger.info("")
-    printToolList("Modes", modes)
-  }
-
-  def printToolList(title: String, tools: List[ToolCommand[_]]): Unit = {
-    logger.info(s"** $title **")
-    tools
-      .map(_.toolName)
-      .grouped(6)
-      .map(x => x.mkString(", "))
-      .foreach(logger.info)
-    logger.info("")
-  }
-
-  def modes: List[ToolCommand[_]] = List(
-    Generate,
-    Merge
-  )
+  def subTools: Map[String, List[ToolCommand[_]]] =
+    Map("Modes" -> List(Generate, Merge))
 
   def descriptionText: String =
     """
@@ -95,10 +61,17 @@ object SeqStat extends ToolCommand[Args] {
     s"""
        |To run $toolName and save the output in a JSON file:
        |
-       |${example("-i", "input.fastq", "-o", "output.json")}
+       |${example("generate",
+                  "-i",
+                  "input.fastq",
+                  "-o",
+                  "output.json",
+                  "--sample",
+                  "<sample_name>",
+                  "--library",
+                  "<library name>",
+                  "--readgroup",
+                  "<readgroup name>")}
        |
-       |To run $toolName and wirte the output to stdout:
-       |
-       |${example("-i", "input.fastq")}
      """.stripMargin
 }

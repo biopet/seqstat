@@ -28,9 +28,9 @@ object Merge extends ToolCommand[Args] {
   def argsParser = new ArgsParser(this)
 
   def main(args: Array[String]): Unit = {
-    ???
     val cmdArgs = cmdArrayToArgs(args)
 
+    ???
     //TODO
 
     logger.info("Done")

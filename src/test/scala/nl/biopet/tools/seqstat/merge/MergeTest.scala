@@ -21,11 +21,10 @@
 
 package nl.biopet.tools.seqstat.merge
 
-import nl.biopet.utils.test.tools.ToolTest
-import org.scalatest.mock.MockitoSugar
+import nl.biopet.test.BiopetTest
 import org.testng.annotations.Test
 
-class MergeTest extends ToolTest[Args] with MockitoSugar {
+class MergeTest extends BiopetTest {
   def toolCommand: Merge.type = Merge
   @Test
   def testNoArgs(): Unit = {

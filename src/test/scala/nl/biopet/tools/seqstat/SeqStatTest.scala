@@ -25,7 +25,7 @@ import nl.biopet.utils.test.tools.ToolTest
 import org.scalatest.mock.MockitoSugar
 import org.testng.annotations.Test
 
-import scala.collection.JavaConverters._
+import nl.biopet.utils.tool.multi.Args
 
 class SeqStatTest extends ToolTest[Args] with MockitoSugar {
   def toolCommand: SeqStat.type = SeqStat

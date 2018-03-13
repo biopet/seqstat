@@ -21,11 +21,11 @@
 
 package nl.biopet.tools.seqstat.validate
 
-import nl.biopet.utils.test.tools.ToolTest
+import nl.biopet.test.BiopetTest
 import org.scalatest.mock.MockitoSugar
 import org.testng.annotations.Test
 
-class ValidateTest extends ToolTest[Args] with MockitoSugar {
+class ValidateTest extends BiopetTest with MockitoSugar {
   def toolCommand: Validate.type = Validate
   @Test
   def testNoArgs(): Unit = {
