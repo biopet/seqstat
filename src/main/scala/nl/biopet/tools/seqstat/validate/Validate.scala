@@ -19,6 +19,36 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package nl.biopet.tools.seqstat
+package nl.biopet.tools.seqstat.validate
 
-case class Args(mode: Option[String] = None, toolArgs: Array[String] = Array())
+import nl.biopet.utils.tool.ToolCommand
+
+object Validate extends ToolCommand[Args] {
+  def emptyArgs: Args = Args()
+  def argsParser = new ArgsParser(this)
+
+  def main(args: Array[String]): Unit = {
+    ???
+    val cmdArgs = cmdArrayToArgs(args)
+
+    //TODO
+
+    logger.info("Done")
+  }
+
+  def descriptionText: String =
+    """
+      |
+    """.stripMargin
+
+  def manualText: String =
+    """
+      |
+    """.stripMargin
+
+  def exampleText: String =
+    s"""
+       |
+     """.stripMargin
+
+}

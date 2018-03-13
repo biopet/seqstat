@@ -19,6 +19,18 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package nl.biopet.tools.seqstat
+package nl.biopet.tools.seqstat.validate
 
-case class Args(mode: Option[String] = None, toolArgs: Array[String] = Array())
+import nl.biopet.utils.test.tools.ToolTest
+import org.scalatest.mock.MockitoSugar
+import org.testng.annotations.Test
+
+class ValidateTest extends ToolTest[Args] with MockitoSugar {
+  def toolCommand: Validate.type = Validate
+  @Test
+  def testNoArgs(): Unit = {
+    intercept[IllegalArgumentException] {
+      Validate.main(Array())
+    }
+  }
+}

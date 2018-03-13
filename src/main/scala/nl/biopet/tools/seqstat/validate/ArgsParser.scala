@@ -19,6 +19,24 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package nl.biopet.tools.seqstat
+package nl.biopet.tools.seqstat.validate
 
-case class Args(mode: Option[String] = None, toolArgs: Array[String] = Array())
+import java.io.File
+
+import nl.biopet.utils.tool.{AbstractOptParser, ToolCommand}
+
+class ArgsParser(toolCommand: ToolCommand[Args])
+    extends AbstractOptParser[Args](toolCommand) {
+
+  opt[File]('i', "inputFile")
+    .required()
+    .unbounded()
+    .valueName("<seqstat file>")
+    .action((x, c) => c.copy(inputFiles = x :: c.inputFiles))
+    .text("Files to merge into a single file")
+  opt[File]('o', "outputFile")
+    .required()
+    .valueName("<seqstat file>")
+    .action((x, c) => c.copy(outputFile = x))
+    .text("Output file")
+}

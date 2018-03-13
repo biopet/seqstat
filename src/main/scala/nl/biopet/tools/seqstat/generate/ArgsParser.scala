@@ -19,20 +19,42 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package nl.biopet.tools.seqstat
+package nl.biopet.tools.seqstat.generate
+
+import java.io.File
 
 import nl.biopet.utils.tool.{AbstractOptParser, ToolCommand}
 
 class ArgsParser(toolCommand: ToolCommand[Args])
     extends AbstractOptParser[Args](toolCommand) {
 
-  arg[String]("mode")
-    .valueName("<mode>")
-    .action((x, c) => c.copy(mode = Some(x)))
-    .text("compute or gather")
-  arg[String]("tool args")
-    .optional()
-    .unbounded()
-    .action((x, c) => c.copy(toolArgs = c.toolArgs :+ x))
-    .text("Arguments for the tool")
+  opt[File]('i', "fastqR1")
+    .required()
+    .valueName("<fastq file>")
+    .action((x, c) => c.copy(fastqR1 = x))
+    .text("FastQ file to generate stats from")
+  opt[File]('j', "fastqR2")
+    .valueName("<fastq file>")
+    .action((x, c) => c.copy(fastqR2 = Some(x)))
+    .text("FastQ file to generate stats from")
+  opt[File]('o', "output")
+    .valueName("<json>")
+    .required()
+    .action((x, c) => c.copy(outputJson = x))
+    .text("File to write output to, if not supplied output go to stdout")
+  opt[String]("sample")
+    .valueName("<name>")
+    .required()
+    .action((x, c) => c.copy(sample = x))
+    .text("Sample name")
+  opt[String]("library")
+    .valueName("<name>")
+    .required()
+    .action((x, c) => c.copy(library = x))
+    .text("Library name")
+  opt[String]("readgroup")
+    .valueName("<name>")
+    .required()
+    .action((x, c) => c.copy(readgroup = x))
+    .text("Readgroup name")
 }

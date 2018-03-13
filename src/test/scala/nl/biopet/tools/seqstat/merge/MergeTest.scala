@@ -19,6 +19,18 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package nl.biopet.tools.seqstat
+package nl.biopet.tools.seqstat.merge
 
-case class Args(mode: Option[String] = None, toolArgs: Array[String] = Array())
+import nl.biopet.utils.test.tools.ToolTest
+import org.scalatest.mock.MockitoSugar
+import org.testng.annotations.Test
+
+class MergeTest extends ToolTest[Args] with MockitoSugar {
+  def toolCommand: Merge.type = Merge
+  @Test
+  def testNoArgs(): Unit = {
+    intercept[IllegalArgumentException] {
+      Merge.main(Array())
+    }
+  }
+}

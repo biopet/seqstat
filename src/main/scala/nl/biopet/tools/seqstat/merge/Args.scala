@@ -19,6 +19,8 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package nl.biopet.tools.seqstat
+package nl.biopet.tools.seqstat.merge
 
-case class Args(mode: Option[String] = None, toolArgs: Array[String] = Array())
+import java.io.File
+
+case class Args(inputFiles: List[File] = Nil, outputFile: File = null)

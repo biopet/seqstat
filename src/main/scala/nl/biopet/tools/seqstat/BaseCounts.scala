@@ -21,4 +21,16 @@
 
 package nl.biopet.tools.seqstat
 
-case class Args(mode: Option[String] = None, toolArgs: Array[String] = Array())
+import nl.biopet.utils.Counts
+import play.api.libs.json.JsValue
+
+class BaseCounts(map: Map[Char, Long]) extends Counts[Char](map) {}
+
+object BaseCounts {
+  def apply(nucleotides_histogram: JsValue): BaseCounts =
+    new BaseCounts(Counts.mapFromJson(nucleotides_histogram).map {
+      case (k, v) => k.toInt.toChar -> v
+    })
+
+  def unapply(arg: BaseCounts): Option[JsValue] = Some(arg.toJson)
+}

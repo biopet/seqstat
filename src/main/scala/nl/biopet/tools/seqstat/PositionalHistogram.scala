@@ -105,6 +105,16 @@ class PositionalHistogram(
   def totalBases: Long = {
     map.map { case (_, hist) => hist.total }.sum
   }
+
+  def toMap: Map[String, Array[Long]] = {
+    map.map {
+      case (k, v) =>
+        val content = v.countsMap
+        k.toString -> (0 to v.countsMap.keys.max)
+          .map(content.getOrElse(_, 0L))
+          .toArray
+    }.toMap
+  }
 }
 
 object PositionalHistogram {
@@ -143,4 +153,20 @@ object PositionalHistogram {
           "Json value must be a object to be a PositionalHistogram")
     }
   }
+
+  def fromMap(map: Map[String, Array[Long]]): PositionalHistogram = {
+    new PositionalHistogram(
+      mutable.Map() ++ map.map {
+        case (k, v) =>
+          k.head -> new Histogram(v.zipWithIndex.map {
+            case (l, idx) => idx -> l
+          }.toMap)
+      })
+  }
+
+  def empty: PositionalHistogram = new PositionalHistogram()
+
+  def apply(content: JsValue): PositionalHistogram = fromJson(content)
+
+  def unapply(arg: PositionalHistogram): Option[JsValue] = Some(arg.toJson)
 }

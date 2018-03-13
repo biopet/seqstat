@@ -21,4 +21,16 @@
 
 package nl.biopet.tools.seqstat
 
-case class Args(mode: Option[String] = None, toolArgs: Array[String] = Array())
+import nl.biopet.utils.{Counts, Histogram}
+import play.api.libs.json.JsValue
+
+class LengthHistogram(map: Map[Int, Long] = Map()) extends Histogram[Int](map) {}
+
+object LengthHistogram {
+  def apply(length_histogram: JsValue): LengthHistogram = {
+    new LengthHistogram(
+      Counts.mapFromJson(length_histogram).map { case (k, v) => k.toInt -> v })
+  }
+
+  def unapply(arg: LengthHistogram): Option[JsValue] = Some(arg.toJson)
+}

@@ -19,11 +19,8 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package nl.biopet.tools.seqstat
+package nl.biopet.tools
 
-object FqEncoding extends Enumeration {
-  type FqEncoding = Value
-  val Sanger = Value(33, "Sanger")
-  val Solexa = Value(64, "Solexa")
-  val Unknown = Value(0, "Unknown")
+package object seqstat {
+  case class Group(sample: String, library: String, readgroup: String)
 }

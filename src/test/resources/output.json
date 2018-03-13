@@ -1,0 +1,65 @@
+{
+  "samples": {
+    "sampleName": {
+      "libraries": {
+        "libraryName": {
+          "readgroups": {
+            "readgroupName": {
+              "seqstat": {
+                "R1": {
+                  "read_stats": {
+                    "num_total": 4,
+                    "num_avg_qual_gte": 5,
+                    "qual_encoding": "sanger",
+                    "len_histogram": {
+                      "1": 5,
+                      "2": 5,
+                      "3": 5,
+                      "4": 5
+                    }
+                  },
+                  "base_stats": {
+                    "num_total": 10,
+                    "nucleotides": {
+                      "A": 4,
+                      "G": 5,
+                      "T": 5,
+                      "C": 5,
+                      "N": 0
+                    }
+                  },
+                  "quality_histogram": {
+                    "1": [4,3,2,1],
+                    "2": [4,3,2,1]
+                  },
+                  "nucleotides_histogram": {
+                    "A": [4,3,2,1],
+                    "T": [4,3,2,1],
+                    "G": [4,3,2,1],
+                    "C": [4,3,2,1],
+                    "N": [4,3,2,1]
+                  }
+                },
+                "R2": {
+                  "read_stats": {
+
+                  },
+                  "base_stats": {
+
+                  },
+                  "quality_histogram": {
+                    "1": [4,3,2,1],
+                    "2": [4,3,2,1]
+                  }
+                },
+                "combined_stats": {
+
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

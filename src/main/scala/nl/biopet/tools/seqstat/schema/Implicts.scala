@@ -19,6 +19,28 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package nl.biopet.tools.seqstat
+package nl.biopet.tools.seqstat.schema
 
-case class Args(mode: Option[String] = None, toolArgs: Array[String] = Array())
+import nl.biopet.tools.seqstat.{
+  BaseCounts,
+  LengthHistogram,
+  PositionalHistogram
+}
+import play.api.libs.json._
+
+object Implicts {
+  implicit val positionalHistogram: Reads[PositionalHistogram] =
+    Json.reads[PositionalHistogram]
+  implicit val charCounts: Reads[BaseCounts] = Json.reads[BaseCounts]
+  implicit val LengthHistogram: Reads[LengthHistogram] =
+    Json.reads[LengthHistogram]
+  implicit val aggregationRead: Reads[AggregationRead] =
+    Json.reads[AggregationRead]
+  implicit val dataRead: Reads[DataRead] = Json.reads[DataRead]
+  implicit val data: Reads[Data] = Json.reads[Data]
+  implicit val aggregation: Reads[Aggregation] = Json.reads[Aggregation]
+  implicit val readgroup: Reads[Readgroup] = Json.reads[Readgroup]
+  implicit val library: Reads[Library] = Json.reads[Library]
+  implicit val sample: Reads[Sample] = Json.reads[Sample]
+  implicit val root: Reads[Root] = Json.reads[Root]
+}

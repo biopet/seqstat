@@ -19,6 +19,18 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package nl.biopet.tools.seqstat
+package nl.biopet.tools.seqstat.generate
 
-case class Args(mode: Option[String] = None, toolArgs: Array[String] = Array())
+import nl.biopet.utils.test.tools.ToolTest
+import org.scalatest.mock.MockitoSugar
+import org.testng.annotations.Test
+
+class GenerateTest extends ToolTest[Args] with MockitoSugar {
+  def toolCommand: Generate.type = Generate
+  @Test
+  def testNoArgs(): Unit = {
+    intercept[IllegalArgumentException] {
+      Generate.main(Array())
+    }
+  }
+}
