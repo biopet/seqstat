@@ -21,6 +21,10 @@
 
 package nl.biopet.tools.seqstat.merge
 
+import java.io.File
+
+import nl.biopet.tools.seqstat.generate.Generate
+import nl.biopet.tools.seqstat.schema.{AggregationRead, Root}
 import nl.biopet.utils.test.tools.ToolTest
 import org.testng.annotations.Test
 
@@ -31,5 +35,97 @@ class MergeTest extends ToolTest[Args] {
     intercept[IllegalArgumentException] {
       Merge.main(Array())
     }
+  }
+
+  def generateTestFile(sample: String,
+                       library: String,
+                       readgroup: String): File = {
+    val outputFile = File.createTempFile("seqstat.", ".json")
+    outputFile.deleteOnExit()
+    Generate.main(
+      Array(
+        "-i",
+        resourcePath("/R1.fq"),
+        "-j",
+        resourcePath("/R2.fq"),
+        "-o",
+        outputFile.getAbsolutePath,
+        "--sample",
+        sample,
+        "--library",
+        library,
+        "--readgroup",
+        readgroup
+      ))
+    outputFile
+  }
+
+  @Test
+  def testMerge(): Unit = {
+    val inputFile1 = generateTestFile("sampleName", "libraryName", "rgName")
+    val outputFile = File.createTempFile("seqstat.", ".json")
+    outputFile.deleteOnExit()
+
+    Merge.main(
+      Array("-i",
+            inputFile1.getAbsolutePath,
+            "-i",
+            inputFile1.getAbsolutePath,
+            "-o",
+            outputFile.getAbsolutePath))
+
+    val root = Root.fromFile(outputFile)
+    val seqstats = root.readgroups.map { case (_, v) => v.seqstat }.toList
+    assert(seqstats.forall(_.asGroupStats.isPaired))
+    seqstats.size shouldBe 1
+    seqstats.head.r2.isDefined shouldBe true
+    seqstats.head.r1.aggregation shouldBe AggregationRead(
+      4,
+      4,
+      "A",
+      "!",
+      List("Sanger", "Illumina 1.8+"),
+      2,
+      8)
+  }
+
+  @Test
+  def testMultiMerge(): Unit = {
+    val inputFile1 = generateTestFile("sampleName1", "libraryName", "rgName")
+    val inputFile2 = generateTestFile("sampleName1", "libraryName", "rgName")
+    val inputFile3 = generateTestFile("sampleName2", "libraryName", "rgName")
+    val outputFile = File.createTempFile("seqstat.", ".json")
+    outputFile.deleteOnExit()
+    val combinedOutputFile = File.createTempFile("seqstat.", ".json")
+    combinedOutputFile.deleteOnExit()
+
+    Merge.main(
+      Array(
+        "-i",
+        inputFile1.getAbsolutePath,
+        "-i",
+        inputFile2.getAbsolutePath,
+        "-i",
+        inputFile3.getAbsolutePath,
+        "-o",
+        outputFile.getAbsolutePath,
+        "--combinedOutputFile",
+        combinedOutputFile.getAbsolutePath
+      ))
+
+    val root = Root.fromFile(outputFile)
+    val seqstats = root.readgroups.map { case (_, v) => v.seqstat }.toList
+    assert(seqstats.forall(_.asGroupStats.isPaired))
+    root.samples.size shouldBe 2
+    seqstats.size shouldBe 2
+    seqstats.head.r2.isDefined shouldBe true
+    seqstats.head.r1.aggregation shouldBe AggregationRead(
+      4,
+      4,
+      "A",
+      "!",
+      List("Sanger", "Illumina 1.8+"),
+      2,
+      8)
   }
 }

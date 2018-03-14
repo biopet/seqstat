@@ -21,19 +21,9 @@
 
 package nl.biopet.tools.seqstat.schema
 
-import nl.biopet.tools.seqstat.{
-  BaseCounts,
-  LengthHistogram,
-  PositionalHistogram
-}
 import play.api.libs.json._
 
 object Implicts {
-  implicit val positionalHistogramReads: Reads[PositionalHistogram] =
-    Json.reads[PositionalHistogram]
-  implicit val charCountsReads: Reads[BaseCounts] = Json.reads[BaseCounts]
-  implicit val LengthHistogramReads: Reads[LengthHistogram] =
-    Json.reads[LengthHistogram]
   implicit val aggregationReadReads: Reads[AggregationRead] =
     Json.reads[AggregationRead]
   implicit val dataReadReads: Reads[DataRead] = Json.reads[DataRead]
@@ -44,11 +34,6 @@ object Implicts {
   implicit val sampleReads: Reads[Sample] = Json.reads[Sample]
   implicit val rootReads: Reads[Root] = Json.reads[Root]
 
-  implicit val positionalHistogramWrites: Writes[PositionalHistogram] =
-    Json.writes[PositionalHistogram]
-  implicit val charCountsWrites: Writes[BaseCounts] = Json.writes[BaseCounts]
-  implicit val LengthHistogramWrites: Writes[LengthHistogram] =
-    Json.writes[LengthHistogram]
   implicit val aggregationReadWrites: Writes[AggregationRead] =
     Json.writes[AggregationRead]
   implicit val dataReadWrites: Writes[DataRead] = Json.writes[DataRead]
