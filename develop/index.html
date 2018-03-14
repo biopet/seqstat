@@ -188,7 +188,7 @@
         <p>See example.</p>
         
         <h2 id="usage" class="section">Usage</h2>
-        <p>Usage for SeqStat:</p>
+        <p>Usage for Modes - Generate:</p>
         <table class="table">
           <thead>
             <tr>
@@ -218,16 +218,126 @@
               <td>Print version</td>
             </tr>
             <tr>
-              <td>toolName</td>
+              <td>--fastqR1, -i</td>
+              <td>yes</td>
               <td>no</td>
-              <td>no</td>
-              <td>Name of the tool to execute</td>
+              <td>FastQ file to generate stats from</td>
             </tr>
             <tr>
-              <td>tool args</td>
+              <td>--fastqR2, -j</td>
               <td>no</td>
+              <td>no</td>
+              <td>FastQ file to generate stats from</td>
+            </tr>
+            <tr>
+              <td>--output, -o</td>
+              <td>yes</td>
+              <td>no</td>
+              <td>File to write output to, if not supplied output go to stdout</td>
+            </tr>
+            <tr>
+              <td>--sample</td>
+              <td>yes</td>
+              <td>no</td>
+              <td>Sample name</td>
+            </tr>
+            <tr>
+              <td>--library</td>
+              <td>yes</td>
+              <td>no</td>
+              <td>Library name</td>
+            </tr>
+            <tr>
+              <td>--readgroup</td>
+              <td>yes</td>
+              <td>no</td>
+              <td>Readgroup name</td>
+            </tr>
+          </tbody>
+        </table>
+        <p>Usage for Modes - Merge:</p>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Option</th>
+              <th>Required</th>
+              <th>Can occur multiple times</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>--log_level, -l</td>
+              <td>no</td>
+              <td>no</td>
+              <td>Level of log information printed. Possible levels: &#39;debug&#39;, &#39;info&#39;, &#39;warn&#39;, &#39;error&#39;</td>
+            </tr>
+            <tr>
+              <td>--help, -h</td>
+              <td>no</td>
+              <td>no</td>
+              <td>Print usage</td>
+            </tr>
+            <tr>
+              <td>--version, -v</td>
+              <td>no</td>
+              <td>no</td>
+              <td>Print version</td>
+            </tr>
+            <tr>
+              <td>--inputFile, -i</td>
+              <td>yes</td>
               <td>yes (unlimited)</td>
-              <td>Arguments for the tool</td>
+              <td>Files to merge into a single file</td>
+            </tr>
+            <tr>
+              <td>--outputFile, -o</td>
+              <td>no</td>
+              <td>no</td>
+              <td>Output file</td>
+            </tr>
+            <tr>
+              <td>--combinedOutputFile</td>
+              <td>no</td>
+              <td>no</td>
+              <td>Combined output file</td>
+            </tr>
+          </tbody>
+        </table>
+        <p>Usage for Modes - Validate:</p>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Option</th>
+              <th>Required</th>
+              <th>Can occur multiple times</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>--log_level, -l</td>
+              <td>no</td>
+              <td>no</td>
+              <td>Level of log information printed. Possible levels: &#39;debug&#39;, &#39;info&#39;, &#39;warn&#39;, &#39;error&#39;</td>
+            </tr>
+            <tr>
+              <td>--help, -h</td>
+              <td>no</td>
+              <td>no</td>
+              <td>Print usage</td>
+            </tr>
+            <tr>
+              <td>--version, -v</td>
+              <td>no</td>
+              <td>no</td>
+              <td>Print version</td>
+            </tr>
+            <tr>
+              <td>--inputFile, -i</td>
+              <td>yes</td>
+              <td>no</td>
+              <td>File to validate schema</td>
             </tr>
           </tbody>
         </table>
