@@ -21,12 +21,15 @@
 
 package nl.biopet.tools.seqstat.validate
 
-import nl.biopet.test.BiopetTest
-import org.scalatest.mock.MockitoSugar
+import nl.biopet.utils.test.tools.ToolTest
 import org.testng.annotations.Test
 
-class ValidateTest extends BiopetTest with MockitoSugar {
+class ValidateTest extends ToolTest[Args] {
   def toolCommand: Validate.type = Validate
+
+  override def minExampleWords = 10
+  override def minManualWords = 0
+
   @Test
   def testNoArgs(): Unit = {
     intercept[IllegalArgumentException] {

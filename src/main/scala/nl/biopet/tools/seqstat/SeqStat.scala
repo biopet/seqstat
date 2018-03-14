@@ -23,55 +23,18 @@ package nl.biopet.tools.seqstat
 
 import nl.biopet.tools.seqstat.generate.Generate
 import nl.biopet.tools.seqstat.merge.Merge
+import nl.biopet.tools.seqstat.validate.Validate
 import nl.biopet.utils.tool.ToolCommand
 import nl.biopet.utils.tool.multi.MultiToolCommand
 
 object SeqStat extends MultiToolCommand {
 
   def subTools: Map[String, List[ToolCommand[_]]] =
-    Map("Modes" -> List(Generate, Merge))
+    Map("Mode" -> List(Generate, Merge, Validate))
 
-  def descriptionText: String =
-    """
-      |SeqStats outputs several stats on a FASTQ file.
-      |
-      |Outputted stats:
-      |
-      |- Bases
-      |   - Total number
-      |   - Base qualities, with the number of bases having that quality
-      |   - Number of each nucleotide
-      |- Reads
-      |   - Total number
-      |   - Number of reads with 'N' bases
-      |   - minimum length
-      |   - maximum length
-      |   - A histogram of the average base qualities
-      |   - The quality encoding (Sanger, solexa etc.)
-      |   - A histogram of the read lengths.
-    """.stripMargin
+  override def extendedUsage = true
 
-  def manualText: String =
-    """
-      |By default stats are outputted to stdout in json format. If an output file
-      |is specified it writes to the file in json format.
-    """.stripMargin
-
-  def exampleText: String =
-    s"""
-       |To run $toolName and save the output in a JSON file:
-       |
-       |${example("generate",
-                  "-i",
-                  "input.fastq",
-                  "-o",
-                  "output.json",
-                  "--sample",
-                  "<sample_name>",
-                  "--library",
-                  "<library name>",
-                  "--readgroup",
-                  "<readgroup name>")}
-       |
-     """.stripMargin
+  def descriptionText: String = extendedDescriptionText
+  def manualText: String = extendedManualText
+  def exampleText: String = extendedExampleText
 }

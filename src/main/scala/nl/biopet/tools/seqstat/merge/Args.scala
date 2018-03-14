@@ -23,4 +23,6 @@ package nl.biopet.tools.seqstat.merge
 
 import java.io.File
 
-case class Args(inputFiles: List[File] = Nil, outputFile: File = null)
+case class Args(inputFiles: List[File] = Nil,
+                outputFile: Option[File] = None,
+                combineOutputFile: Option[File] = None)

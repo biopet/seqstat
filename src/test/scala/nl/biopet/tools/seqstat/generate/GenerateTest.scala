@@ -23,12 +23,13 @@ package nl.biopet.tools.seqstat.generate
 
 import java.io.File
 
-import nl.biopet.test.BiopetTest
 import nl.biopet.tools.seqstat.schema.{AggregationRead, Root}
+import nl.biopet.utils.test.tools.ToolTest
 import org.testng.annotations.Test
 
-class GenerateTest extends BiopetTest {
+class GenerateTest extends ToolTest[Args] {
   def toolCommand: Generate.type = Generate
+
   @Test
   def testNoArgs(): Unit = {
     intercept[IllegalArgumentException] {

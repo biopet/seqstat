@@ -21,6 +21,8 @@
 
 package nl.biopet.tools.seqstat.validate
 
+import nl.biopet.tools.seqstat.SeqStat
+import nl.biopet.tools.seqstat.schema.Root
 import nl.biopet.utils.tool.ToolCommand
 
 object Validate extends ToolCommand[Args] {
@@ -30,24 +32,26 @@ object Validate extends ToolCommand[Args] {
   def main(args: Array[String]): Unit = {
     val cmdArgs = cmdArrayToArgs(args)
 
-    ???
-    //TODO
+    Root.fromFile(cmdArgs.inputFile).validate()
 
     logger.info("Done")
   }
 
   def descriptionText: String =
-    """
-      |
+    s"""
+      |A file from ${SeqStat.toolName} will validate the input files.
+      |If aggregation values can not be regenerated the file is considered corrupt.
+      |This should only happen when the user will edit the seqstat file manual.
     """.stripMargin
 
   def manualText: String =
-    """
-      |
+    s"""
+      |See example.
     """.stripMargin
 
   def exampleText: String =
     s"""
-       |
+       |Default:
+       |${SeqStat.example("validate", "-i", "<input file>")}
      """.stripMargin
 }

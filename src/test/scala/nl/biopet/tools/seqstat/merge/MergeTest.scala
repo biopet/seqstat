@@ -21,10 +21,10 @@
 
 package nl.biopet.tools.seqstat.merge
 
-import nl.biopet.test.BiopetTest
+import nl.biopet.utils.test.tools.ToolTest
 import org.testng.annotations.Test
 
-class MergeTest extends BiopetTest {
+class MergeTest extends ToolTest[Args] {
   def toolCommand: Merge.type = Merge
   @Test
   def testNoArgs(): Unit = {

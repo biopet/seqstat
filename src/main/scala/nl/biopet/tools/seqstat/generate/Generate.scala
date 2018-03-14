@@ -22,8 +22,9 @@
 package nl.biopet.tools.seqstat.generate
 
 import htsjdk.samtools.fastq.FastqReader
+import nl.biopet.tools.seqstat.SeqStat.{example, toolName}
 import nl.biopet.tools.seqstat.schema.Root
-import nl.biopet.tools.seqstat.{Group, GroupStats, Stats}
+import nl.biopet.tools.seqstat.{Group, GroupStats, SeqStat, Stats}
 import nl.biopet.utils.tool.ToolCommand
 
 import scala.collection.JavaConversions._
@@ -66,16 +67,44 @@ object Generate extends ToolCommand[Args] {
 
   def descriptionText: String =
     """
+      |SeqStats outputs several stats on a FASTQ file.
       |
+      |Outputted stats:
+      |
+      |- Bases
+      |   - Total number
+      |   - Base qualities, with the number of bases having that quality
+      |   - Number of each nucleotide
+      |- Reads
+      |   - Total number
+      |   - minimum length
+      |   - maximum length
+      |   - A histogram of the average base qualities
+      |   - The quality encoding (Sanger, solexa etc.)
+      |   - A histogram of the read lengths.
     """.stripMargin
 
   def manualText: String =
     """
-      |
+      |By default stats are outputted to stdout in json format. If an output file
+      |is specified it writes to the file in json format.
     """.stripMargin
 
   def exampleText: String =
     s"""
+       |To run ${SeqStat.toolName} and save the output in a JSON file:
+       |
+       |${SeqStat.example("generate",
+                          "-i",
+                          "input.fastq",
+                          "-o",
+                          "output.json",
+                          "--sample",
+                          "<sample_name>",
+                          "--library",
+                          "<library name>",
+                          "--readgroup",
+                          "<readgroup name>")}
        |
      """.stripMargin
 

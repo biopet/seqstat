@@ -21,6 +21,8 @@
 
 package nl.biopet.tools.seqstat.merge
 
+import nl.biopet.tools.seqstat.SeqStat
+import nl.biopet.tools.seqstat.schema.Root
 import nl.biopet.utils.tool.ToolCommand
 
 object Merge extends ToolCommand[Args] {
@@ -30,25 +32,67 @@ object Merge extends ToolCommand[Args] {
   def main(args: Array[String]): Unit = {
     val cmdArgs = cmdArrayToArgs(args)
 
-    ???
-    //TODO
+    require(cmdArgs.outputFile.isDefined || cmdArgs.combineOutputFile.isDefined,
+            "--outputFile and/or --combineOutputFile should be given")
+
+    val root =
+      Root.fromGroupStats(cmdArgs.inputFiles.flatMap(Root.fromFile(_).asStats))
+    root.validate()
+    cmdArgs.outputFile.foreach(file => root.writeFile(file))
+
+    cmdArgs.combineOutputFile.foreach { file =>
+      root.readgroups
+        .map { case (_, rg) => rg.seqstat.asGroupStats }
+        .reduce(_ + _)
+        .toSchemaData
+        .writeFile(file)
+    }
 
     logger.info("Done")
   }
 
   def descriptionText: String =
     """
-      |
+      |This module will merge seqstat files together and keep the sample/library/readgroup structure.
+      |If required it's also possible to collapse this, the output file then des not have any sample/library/readgroup structure.
     """.stripMargin
 
   def manualText: String =
-    """
-      |
+    s"""
+      |When merging the files ${SeqStat.toolName} will validate the input files and the output files.
+      |If aggregation values can not be regenerated the file is considered corrupt.
     """.stripMargin
 
   def exampleText: String =
     s"""
+       |Merging multiple files:
+       |${SeqStat.example("merge",
+                          "-i",
+                          "<seqstat file>",
+                          "-i",
+                          "<seqstat file>",
+                          "-o",
+                          "<output file>")}
+       |
+       |Merging multiple files as collapsed format:
+       |${SeqStat.example("merge",
+                          "-i",
+                          "<seqstat file>",
+                          "-i",
+                          "<seqstat file>",
+                          "--combinedOutputFile",
+                          "<output file>")}
+       |
+       |Both output formats at the same time:
+       |${SeqStat.example("merge",
+                          "-i",
+                          "<seqstat file>",
+                          "-i",
+                          "<seqstat file>",
+                          "-o",
+                          "<output file>",
+                          "--combinedOutputFile",
+                          "<output file>")}
        |
      """.stripMargin
-
 }

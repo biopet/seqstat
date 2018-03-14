@@ -21,7 +21,12 @@
 
 package nl.biopet.tools.seqstat.schema
 
+import java.io.File
+
 import nl.biopet.tools.seqstat.{GroupStats, PositionalHistogram}
+import nl.biopet.utils.io
+import play.api.libs.json._
+import nl.biopet.tools.seqstat.schema.Implicts._
 
 case class Data(r1: DataRead, r2: Option[DataRead]) {
   def asGroupStats: GroupStats = {
@@ -66,5 +71,14 @@ case class Data(r1: DataRead, r2: Option[DataRead]) {
           "Aggregation R2 does not match")
       case _ =>
     }
+  }
+
+  def toJson: JsValue = {
+    Json.toJson(this)
+  }
+
+  def writeFile(file: File): Unit = {
+    val json = toJson
+    io.writeLinesToFile(file, Json.stringify(json) :: Nil)
   }
 }

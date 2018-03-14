@@ -23,4 +23,4 @@ package nl.biopet.tools.seqstat.validate
 
 import java.io.File
 
-case class Args(inputFiles: List[File] = Nil, outputFile: File = null)
+case class Args(inputFile: File = null)
