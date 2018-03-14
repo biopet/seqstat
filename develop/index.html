@@ -103,6 +103,7 @@
 
         
         <h1 id="description" class="section">Description</h1>
+        <p>Module generate:</p>
         <p>SeqStats outputs several stats on a FASTQ file.</p>
         <p>Outputted stats:</p>
         <ul>
@@ -122,9 +123,6 @@
           <li>Total number</li>
         </ul>
         <ul>
-          <li>Number of reads with &#39;N&#39; bases</li>
-        </ul>
-        <ul>
           <li>minimum length</li>
         </ul>
         <ul>
@@ -139,6 +137,13 @@
         <ul>
           <li>A histogram of the read lengths.</li>
         </ul>
+        <p>Module merge:</p>
+        <p>This module will merge seqstat files together and keep the sample/library/readgroup structure.
+        If required it&#39;s also possible to collapse this, the output file then des not have any sample/library/readgroup structure.</p>
+        <p>Module validate:</p>
+        <p>A file from SeqStat will validate the input files.
+        If aggregation values can not be regenerated the file is considered corrupt.
+        This should only happen when the user will edit the seqstat file manual.</p>
         
         <h1 id="installation" class="section">Installation</h1>
         <p>SeqStat requires Java 8 to be installed on your device. Download Java 8
@@ -149,17 +154,29 @@
         <pre><code>java -jar &lt;SeqStat_jar&gt; --help</code></pre>
         
         <h1 id="manual" class="section">Manual</h1>
+        <p>Module generate:</p>
         <p>By default stats are outputted to stdout in json format. If an output file
         is specified it writes to the file in json format.</p>
+        <p>Module merge:</p>
+        <p>When merging the files SeqStat will validate the input files and the output files.
+        If aggregation values can not be regenerated the file is considered corrupt.</p>
+        <p>Module validate:</p>
+        <p>See example.</p>
         
         <h2 id="example" class="section">Example</h2>
+        <p>Module generate:</p>
         <p>To run SeqStat and save the output in a JSON file:</p>
-        <pre><code>java -jar &lt;SeqStat_jar&gt; \
+        <pre><code>java -jar &lt;SeqStat_jar&gt; generate \
 -i input.fastq \
--o output.json</code></pre>
-        <p>To run SeqStat and wirte the output to stdout:</p>
-        <pre><code>java -jar &lt;SeqStat_jar&gt; \
--i input.fastq</code></pre>
+-o output.json \
+--sample &lt;sample_name&gt; \
+--library &lt;library name&gt; \
+--readgroup &lt;readgroup name&gt;</code></pre>
+        <p>Module merge:</p>
+        <p>When merging the files SeqStat will validate the input files and the output files.
+        If aggregation values can not be regenerated the file is considered corrupt.</p>
+        <p>Module validate:</p>
+        <p>See example.</p>
         
         <h2 id="usage" class="section">Usage</h2>
         <p>Usage for SeqStat:</p>
@@ -192,16 +209,16 @@
               <td>Print version</td>
             </tr>
             <tr>
-              <td>--fastq, -i</td>
-              <td>yes</td>
+              <td>toolName</td>
               <td>no</td>
-              <td>FastQ file to generate stats from</td>
+              <td>no</td>
+              <td>Name of the tool to execute</td>
             </tr>
             <tr>
-              <td>--output, -o</td>
+              <td>tool args</td>
               <td>no</td>
-              <td>no</td>
-              <td>File to write output to, if not supplied output go to stdout</td>
+              <td>yes (unlimited)</td>
+              <td>Arguments for the tool</td>
             </tr>
           </tbody>
         </table>

@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>Args - nl.biopet.tools.seqstat.Args</title>
-          <meta name="description" content="Args - nl.biopet.tools.seqstat.Args" />
-          <meta name="keywords" content="Args nl.biopet.tools.seqstat.Args" />
+          <title>GroupStats - nl.biopet.tools.seqstat.GroupStats</title>
+          <meta name="description" content="GroupStats - nl.biopet.tools.seqstat.GroupStats" />
+          <meta name="keywords" content="GroupStats nl.biopet.tools.seqstat.GroupStats" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -16,7 +16,7 @@
       <script type="text/javascript">
          if(top === self) {
             var url = '../../../../index.html';
-            var hash = 'nl.biopet.tools.seqstat.Args';
+            var hash = 'nl.biopet.tools.seqstat.GroupStats';
             var anchor = window.location.hash;
             var anchor_opt = '';
             if (anchor.length >= 1)
@@ -28,12 +28,14 @@
         </head>
         <body class="type">
       <div id="definition">
-        <img alt="Class" src="../../../../lib/class_big.png" />
+        <a href="GroupStats$.html" title="See companion object"><img alt="Class/Object" src="../../../../lib/class_to_object_big.png" /></a>
         <p id="owner"><a href="../../../package.html" class="extype" name="nl">nl</a>.<a href="../../package.html" class="extype" name="nl.biopet">biopet</a>.<a href="../package.html" class="extype" name="nl.biopet.tools">tools</a>.<a href="package.html" class="extype" name="nl.biopet.tools.seqstat">seqstat</a></p>
-        <h1>Args</h1><h3><span class="morelinks"><div>Related Doc:
-            <a href="package.html" class="extype" name="nl.biopet.tools.seqstat">package seqstat</a>
+        <h1><a href="GroupStats$.html" title="See companion object">GroupStats</a></h1><h3><span class="morelinks"><div>
+            Related Docs:
+            <a href="GroupStats$.html" title="See companion object">object GroupStats</a>
+            | <a href="package.html" class="extype" name="nl.biopet.tools.seqstat">package seqstat</a>
           </div></span></h3><span class="permalink">
-      <a href="../../../../index.html#nl.biopet.tools.seqstat.Args" title="Permalink" target="_top">
+      <a href="../../../../index.html#nl.biopet.tools.seqstat.GroupStats" title="Permalink" target="_top">
         <img src="../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
@@ -45,13 +47,13 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">Args</span><span class="params">(<span name="fastq">fastq: <span class="extype" name="java.io.File">File</span> = <span class="symbol">null</span></span>, <span name="outputJson">outputJson: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="java.io.File">File</span>] = <span class="symbol">None</span></span>)</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">GroupStats</span><span class="params">(<span name="r1seq">r1seq: <a href="PositionalHistogram.html" class="extype" name="nl.biopet.tools.seqstat.PositionalHistogram">PositionalHistogram</a></span>, <span name="r1qual">r1qual: <a href="PositionalHistogram.html" class="extype" name="nl.biopet.tools.seqstat.PositionalHistogram">PositionalHistogram</a></span>, <span name="r2seq">r2seq: <span class="extype" name="scala.Option">Option</span>[<a href="PositionalHistogram.html" class="extype" name="nl.biopet.tools.seqstat.PositionalHistogram">PositionalHistogram</a>]</span>, <span name="r2qual">r2qual: <span class="extype" name="scala.Option">Option</span>[<a href="PositionalHistogram.html" class="extype" name="nl.biopet.tools.seqstat.PositionalHistogram">PositionalHistogram</a>]</span>)</span><span class="result"> extends <span class="extype" name="nl.biopet.utils.Logging">Logging</span> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
-          <div class="superTypes hiddenContent"><span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
+          <div class="superTypes hiddenContent"><span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <span class="extype" name="nl.biopet.utils.Logging">Logging</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
         
 
@@ -69,7 +71,7 @@
                 <span class="filtertype">Inherited<br />
                 </span>
                 <ol id="linearization">
-                  <li class="in" name="nl.biopet.tools.seqstat.Args"><span>Args</span></li><li class="in" name="scala.Serializable"><span>Serializable</span></li><li class="in" name="java.io.Serializable"><span>Serializable</span></li><li class="in" name="scala.Product"><span>Product</span></li><li class="in" name="scala.Equals"><span>Equals</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                  <li class="in" name="nl.biopet.tools.seqstat.GroupStats"><span>GroupStats</span></li><li class="in" name="scala.Serializable"><span>Serializable</span></li><li class="in" name="java.io.Serializable"><span>Serializable</span></li><li class="in" name="scala.Product"><span>Product</span></li><li class="in" name="scala.Equals"><span>Equals</span></li><li class="in" name="nl.biopet.utils.Logging"><span>Logging</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
                 </ol>
               </div><div id="ancestors">
             <span class="filtertype"></span>
@@ -88,19 +90,19 @@
         <div id="allMembers">
         <div id="constructors" class="members">
               <h3>Instance Constructors</h3>
-              <ol><li name="nl.biopet.tools.seqstat.Args#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="&lt;init&gt;(fastq:java.io.File,outputJson:Option[java.io.File]):nl.biopet.tools.seqstat.Args"></a>
-      <a id="&lt;init&gt;:Args"></a>
+              <ol><li name="nl.biopet.tools.seqstat.GroupStats#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="&lt;init&gt;(r1seq:nl.biopet.tools.seqstat.PositionalHistogram,r1qual:nl.biopet.tools.seqstat.PositionalHistogram,r2seq:Option[nl.biopet.tools.seqstat.PositionalHistogram],r2qual:Option[nl.biopet.tools.seqstat.PositionalHistogram]):nl.biopet.tools.seqstat.GroupStats"></a>
+      <a id="&lt;init&gt;:GroupStats"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">Args</span><span class="params">(<span name="fastq">fastq: <span class="extype" name="java.io.File">File</span> = <span class="symbol">null</span></span>, <span name="outputJson">outputJson: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="java.io.File">File</span>] = <span class="symbol">None</span></span>)</span>
+        <span class="name">GroupStats</span><span class="params">(<span name="r1seq">r1seq: <a href="PositionalHistogram.html" class="extype" name="nl.biopet.tools.seqstat.PositionalHistogram">PositionalHistogram</a></span>, <span name="r1qual">r1qual: <a href="PositionalHistogram.html" class="extype" name="nl.biopet.tools.seqstat.PositionalHistogram">PositionalHistogram</a></span>, <span name="r2seq">r2seq: <span class="extype" name="scala.Option">Option</span>[<a href="PositionalHistogram.html" class="extype" name="nl.biopet.tools.seqstat.PositionalHistogram">PositionalHistogram</a>]</span>, <span name="r2qual">r2qual: <span class="extype" name="scala.Option">Option</span>[<a href="PositionalHistogram.html" class="extype" name="nl.biopet.tools.seqstat.PositionalHistogram">PositionalHistogram</a>]</span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../../index.html#nl.biopet.tools.seqstat.Args@&lt;init&gt;(fastq:java.io.File,outputJson:Option[java.io.File]):nl.biopet.tools.seqstat.Args" title="Permalink" target="_top">
+      <a href="../../../../index.html#nl.biopet.tools.seqstat.GroupStats@&lt;init&gt;(r1seq:nl.biopet.tools.seqstat.PositionalHistogram,r1qual:nl.biopet.tools.seqstat.PositionalHistogram,r2seq:Option[nl.biopet.tools.seqstat.PositionalHistogram],r2qual:Option[nl.biopet.tools.seqstat.PositionalHistogram]):nl.biopet.tools.seqstat.GroupStats" title="Permalink" target="_top">
         <img src="../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
@@ -126,7 +128,7 @@
         <span title="gt4s: $bang$eq" class="name">!=</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../../index.html#nl.biopet.tools.seqstat.Args@!=(x$1:Any):Boolean" title="Permalink" target="_top">
+      <a href="../../../../index.html#nl.biopet.tools.seqstat.GroupStats@!=(x$1:Any):Boolean" title="Permalink" target="_top">
         <img src="../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
@@ -143,11 +145,28 @@
         <span title="gt4s: $hash$hash" class="name">##</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../../index.html#nl.biopet.tools.seqstat.Args@##():Int" title="Permalink" target="_top">
+      <a href="../../../../index.html#nl.biopet.tools.seqstat.GroupStats@##():Int" title="Permalink" target="_top">
         <img src="../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="nl.biopet.tools.seqstat.GroupStats#+" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="+(other:nl.biopet.tools.seqstat.GroupStats):nl.biopet.tools.seqstat.GroupStats"></a>
+      <a id="+(GroupStats):GroupStats"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span title="gt4s: $plus" class="name">+</span><span class="params">(<span name="other">other: <a href="" class="extype" name="nl.biopet.tools.seqstat.GroupStats">GroupStats</a></span>)</span><span class="result">: <a href="" class="extype" name="nl.biopet.tools.seqstat.GroupStats">GroupStats</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#nl.biopet.tools.seqstat.GroupStats@+(other:nl.biopet.tools.seqstat.GroupStats):nl.biopet.tools.seqstat.GroupStats" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
     </li><li name="scala.AnyRef#==" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="==(x$1:Any):Boolean"></a>
       <a id="==(Any):Boolean"></a>
@@ -160,11 +179,45 @@
         <span title="gt4s: $eq$eq" class="name">==</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../../index.html#nl.biopet.tools.seqstat.Args@==(x$1:Any):Boolean" title="Permalink" target="_top">
+      <a href="../../../../index.html#nl.biopet.tools.seqstat.GroupStats@==(x$1:Any):Boolean" title="Permalink" target="_top">
         <img src="../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="nl.biopet.tools.seqstat.GroupStats#addFastqRecords" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="addFastqRecords(r1:htsjdk.samtools.fastq.FastqRecord,r2:Option[htsjdk.samtools.fastq.FastqRecord]):Unit"></a>
+      <a id="addFastqRecords(FastqRecord,Option[FastqRecord]):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">addFastqRecords</span><span class="params">(<span name="r1">r1: <span class="extype" name="htsjdk.samtools.fastq.FastqRecord">FastqRecord</span></span>, <span name="r2">r2: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="htsjdk.samtools.fastq.FastqRecord">FastqRecord</span>] = <span class="symbol">None</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#nl.biopet.tools.seqstat.GroupStats@addFastqRecords(r1:htsjdk.samtools.fastq.FastqRecord,r2:Option[htsjdk.samtools.fastq.FastqRecord]):Unit" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="nl.biopet.tools.seqstat.GroupStats#addFragment" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="addFragment(r1Seq:String,r1Qual:String,r2Seq:Option[String],r2Qual:Option[String]):Unit"></a>
+      <a id="addFragment(String,String,Option[String],Option[String]):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">addFragment</span><span class="params">(<span name="r1Seq">r1Seq: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="r1Qual">r1Qual: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="r2Seq">r2Seq: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Predef.String">String</span>] = <span class="symbol">None</span></span>, <span name="r2Qual">r2Qual: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Predef.String">String</span>] = <span class="symbol">None</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#nl.biopet.tools.seqstat.GroupStats@addFragment(r1Seq:String,r1Qual:String,r2Seq:Option[String],r2Qual:Option[String]):Unit" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
     </li><li name="scala.Any#asInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="asInstanceOf[T0]:T0"></a>
       <a id="asInstanceOf[T0]:T0"></a>
@@ -177,7 +230,7 @@
         <span class="name">asInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <span class="extype" name="scala.Any.asInstanceOf.T0">T0</span></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../../index.html#nl.biopet.tools.seqstat.Args@asInstanceOf[T0]:T0" title="Permalink" target="_top">
+      <a href="../../../../index.html#nl.biopet.tools.seqstat.GroupStats@asInstanceOf[T0]:T0" title="Permalink" target="_top">
         <img src="../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
@@ -194,7 +247,7 @@
         <span class="name">clone</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.AnyRef">AnyRef</span></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../../index.html#nl.biopet.tools.seqstat.Args@clone():Object" title="Permalink" target="_top">
+      <a href="../../../../index.html#nl.biopet.tools.seqstat.GroupStats@clone():Object" title="Permalink" target="_top">
         <img src="../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
@@ -217,28 +270,11 @@
         <span class="name">eq</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.AnyRef">AnyRef</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../../index.html#nl.biopet.tools.seqstat.Args@eq(x$1:AnyRef):Boolean" title="Permalink" target="_top">
+      <a href="../../../../index.html#nl.biopet.tools.seqstat.GroupStats@eq(x$1:AnyRef):Boolean" title="Permalink" target="_top">
         <img src="../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="nl.biopet.tools.seqstat.Args#fastq" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="fastq:java.io.File"></a>
-      <a id="fastq:File"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">fastq</span><span class="result">: <span class="extype" name="java.io.File">File</span></span>
-      </span>
-      </h4><span class="permalink">
-      <a href="../../../../index.html#nl.biopet.tools.seqstat.Args@fastq:java.io.File" title="Permalink" target="_top">
-        <img src="../../../../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
-      
     </li><li name="scala.AnyRef#finalize" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="finalize():Unit"></a>
       <a id="finalize():Unit"></a>
@@ -251,7 +287,7 @@
         <span class="name">finalize</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../../index.html#nl.biopet.tools.seqstat.Args@finalize():Unit" title="Permalink" target="_top">
+      <a href="../../../../index.html#nl.biopet.tools.seqstat.GroupStats@finalize():Unit" title="Permalink" target="_top">
         <img src="../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
@@ -274,7 +310,7 @@
         <span class="name">getClass</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.Class">Class</span>[_]</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../../index.html#nl.biopet.tools.seqstat.Args@getClass():Class[_]" title="Permalink" target="_top">
+      <a href="../../../../index.html#nl.biopet.tools.seqstat.GroupStats@getClass():Class[_]" title="Permalink" target="_top">
         <img src="../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
@@ -291,11 +327,45 @@
         <span class="name">isInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../../index.html#nl.biopet.tools.seqstat.Args@isInstanceOf[T0]:Boolean" title="Permalink" target="_top">
+      <a href="../../../../index.html#nl.biopet.tools.seqstat.GroupStats@isInstanceOf[T0]:Boolean" title="Permalink" target="_top">
         <img src="../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="nl.biopet.tools.seqstat.GroupStats#isPaired" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="isPaired:Boolean"></a>
+      <a id="isPaired:Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">isPaired</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#nl.biopet.tools.seqstat.GroupStats@isPaired:Boolean" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="nl.biopet.utils.Logging#logger" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="logger:org.apache.log4j.Logger"></a>
+      <a id="logger:Logger"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">logger</span><span class="result">: <span class="extype" name="org.apache.log4j.Logger">Logger</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#nl.biopet.tools.seqstat.GroupStats@logger:org.apache.log4j.Logger" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Logging</dd></dl></div>
     </li><li name="scala.AnyRef#ne" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ne(x$1:AnyRef):Boolean"></a>
       <a id="ne(AnyRef):Boolean"></a>
@@ -308,7 +378,7 @@
         <span class="name">ne</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.AnyRef">AnyRef</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../../index.html#nl.biopet.tools.seqstat.Args@ne(x$1:AnyRef):Boolean" title="Permalink" target="_top">
+      <a href="../../../../index.html#nl.biopet.tools.seqstat.GroupStats@ne(x$1:AnyRef):Boolean" title="Permalink" target="_top">
         <img src="../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
@@ -325,7 +395,7 @@
         <span class="name">notify</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../../index.html#nl.biopet.tools.seqstat.Args@notify():Unit" title="Permalink" target="_top">
+      <a href="../../../../index.html#nl.biopet.tools.seqstat.GroupStats@notify():Unit" title="Permalink" target="_top">
         <img src="../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
@@ -342,24 +412,75 @@
         <span class="name">notifyAll</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../../index.html#nl.biopet.tools.seqstat.Args@notifyAll():Unit" title="Permalink" target="_top">
+      <a href="../../../../index.html#nl.biopet.tools.seqstat.GroupStats@notifyAll():Unit" title="Permalink" target="_top">
         <img src="../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="nl.biopet.tools.seqstat.Args#outputJson" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="outputJson:Option[java.io.File]"></a>
-      <a id="outputJson:Option[File]"></a>
+    </li><li name="nl.biopet.tools.seqstat.GroupStats#r1qual" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="r1qual:nl.biopet.tools.seqstat.PositionalHistogram"></a>
+      <a id="r1qual:PositionalHistogram"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">val</span>
       </span>
       <span class="symbol">
-        <span class="name">outputJson</span><span class="result">: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="java.io.File">File</span>]</span>
+        <span class="name">r1qual</span><span class="result">: <a href="PositionalHistogram.html" class="extype" name="nl.biopet.tools.seqstat.PositionalHistogram">PositionalHistogram</a></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../../index.html#nl.biopet.tools.seqstat.Args@outputJson:Option[java.io.File]" title="Permalink" target="_top">
+      <a href="../../../../index.html#nl.biopet.tools.seqstat.GroupStats@r1qual:nl.biopet.tools.seqstat.PositionalHistogram" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="nl.biopet.tools.seqstat.GroupStats#r1seq" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="r1seq:nl.biopet.tools.seqstat.PositionalHistogram"></a>
+      <a id="r1seq:PositionalHistogram"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">r1seq</span><span class="result">: <a href="PositionalHistogram.html" class="extype" name="nl.biopet.tools.seqstat.PositionalHistogram">PositionalHistogram</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#nl.biopet.tools.seqstat.GroupStats@r1seq:nl.biopet.tools.seqstat.PositionalHistogram" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="nl.biopet.tools.seqstat.GroupStats#r2qual" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="r2qual:Option[nl.biopet.tools.seqstat.PositionalHistogram]"></a>
+      <a id="r2qual:Option[PositionalHistogram]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">r2qual</span><span class="result">: <span class="extype" name="scala.Option">Option</span>[<a href="PositionalHistogram.html" class="extype" name="nl.biopet.tools.seqstat.PositionalHistogram">PositionalHistogram</a>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#nl.biopet.tools.seqstat.GroupStats@r2qual:Option[nl.biopet.tools.seqstat.PositionalHistogram]" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="nl.biopet.tools.seqstat.GroupStats#r2seq" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="r2seq:Option[nl.biopet.tools.seqstat.PositionalHistogram]"></a>
+      <a id="r2seq:Option[PositionalHistogram]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">r2seq</span><span class="result">: <span class="extype" name="scala.Option">Option</span>[<a href="PositionalHistogram.html" class="extype" name="nl.biopet.tools.seqstat.PositionalHistogram">PositionalHistogram</a>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#nl.biopet.tools.seqstat.GroupStats@r2seq:Option[nl.biopet.tools.seqstat.PositionalHistogram]" title="Permalink" target="_top">
         <img src="../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
@@ -376,11 +497,28 @@
         <span class="name">synchronized</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="params">(<span name="arg0">arg0: ⇒ <span class="extype" name="java.lang.AnyRef.synchronized.T0">T0</span></span>)</span><span class="result">: <span class="extype" name="java.lang.AnyRef.synchronized.T0">T0</span></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../../index.html#nl.biopet.tools.seqstat.Args@synchronized[T0](x$1:=&gt;T0):T0" title="Permalink" target="_top">
+      <a href="../../../../index.html#nl.biopet.tools.seqstat.GroupStats@synchronized[T0](x$1:=&gt;T0):T0" title="Permalink" target="_top">
         <img src="../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="nl.biopet.tools.seqstat.GroupStats#toSchemaData" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="toSchemaData:nl.biopet.tools.seqstat.schema.Data"></a>
+      <a id="toSchemaData:Data"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">toSchemaData</span><span class="result">: <a href="schema/Data.html" class="extype" name="nl.biopet.tools.seqstat.schema.Data">Data</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#nl.biopet.tools.seqstat.GroupStats@toSchemaData:nl.biopet.tools.seqstat.schema.Data" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
     </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>
       <a id="wait():Unit"></a>
@@ -393,7 +531,7 @@
         <span class="name">wait</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../../index.html#nl.biopet.tools.seqstat.Args@wait():Unit" title="Permalink" target="_top">
+      <a href="../../../../index.html#nl.biopet.tools.seqstat.GroupStats@wait():Unit" title="Permalink" target="_top">
         <img src="../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
@@ -416,7 +554,7 @@
         <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Long">Long</span></span>, <span name="arg1">arg1: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../../index.html#nl.biopet.tools.seqstat.Args@wait(x$1:Long,x$2:Int):Unit" title="Permalink" target="_top">
+      <a href="../../../../index.html#nl.biopet.tools.seqstat.GroupStats@wait(x$1:Long,x$2:Int):Unit" title="Permalink" target="_top">
         <img src="../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
@@ -439,7 +577,7 @@
         <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Long">Long</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../../index.html#nl.biopet.tools.seqstat.Args@wait(x$1:Long):Unit" title="Permalink" target="_top">
+      <a href="../../../../index.html#nl.biopet.tools.seqstat.GroupStats@wait(x$1:Long):Unit" title="Permalink" target="_top">
         <img src="../../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
@@ -467,6 +605,8 @@
               <h3>Inherited from <span class="extype" name="scala.Product">Product</span></h3>
             </div><div class="parent" name="scala.Equals">
               <h3>Inherited from <span class="extype" name="scala.Equals">Equals</span></h3>
+            </div><div class="parent" name="nl.biopet.utils.Logging">
+              <h3>Inherited from <span class="extype" name="nl.biopet.utils.Logging">Logging</span></h3>
             </div><div class="parent" name="scala.AnyRef">
               <h3>Inherited from <span class="extype" name="scala.AnyRef">AnyRef</span></h3>
             </div><div class="parent" name="scala.Any">
