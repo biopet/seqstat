@@ -22,26 +22,18 @@
 package nl.biopet.tools.seqstat
 
 package object schema {
-  case class Root(samples: Map[String, Sample], seqstat: Option[Aggregation]) {
-    def readgroups: Map[Group, Readgroup] = samples.flatMap {
-      case (sample, s) =>
-        s.libraries.flatMap {
-          case (library, l) =>
-            l.readgroups.map {
-              case (readgroup, r) => Group(sample, library, readgroup) -> r
-            }
-        }
-    }
-  }
+
   case class Sample(libraries: Map[String, Library],
                     seqstat: Option[Aggregation]) {}
   case class Library(readgroups: Map[String, Readgroup],
                      seqstat: Option[Aggregation]) {}
   case class Readgroup(seqstat: Data)
-  case class Aggregation(R1: AggregationRead, R2: Option[AggregationRead])
+  case class Aggregation(r1: AggregationRead, r2: Option[AggregationRead])
   case class AggregationRead(max_len: Int,
                              min_len: Int,
-                             qual_encoding: String,
+                             max_qual: String,
+                             min_qual: String,
+                             qual_encoding: List[String],
                              read_total: Long,
                              bases_total: Long)
   case class DataRead(

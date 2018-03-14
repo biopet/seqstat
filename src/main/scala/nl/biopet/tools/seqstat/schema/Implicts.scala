@@ -29,18 +29,34 @@ import nl.biopet.tools.seqstat.{
 import play.api.libs.json._
 
 object Implicts {
-  implicit val positionalHistogram: Reads[PositionalHistogram] =
+  implicit val positionalHistogramReads: Reads[PositionalHistogram] =
     Json.reads[PositionalHistogram]
-  implicit val charCounts: Reads[BaseCounts] = Json.reads[BaseCounts]
-  implicit val LengthHistogram: Reads[LengthHistogram] =
+  implicit val charCountsReads: Reads[BaseCounts] = Json.reads[BaseCounts]
+  implicit val LengthHistogramReads: Reads[LengthHistogram] =
     Json.reads[LengthHistogram]
-  implicit val aggregationRead: Reads[AggregationRead] =
+  implicit val aggregationReadReads: Reads[AggregationRead] =
     Json.reads[AggregationRead]
-  implicit val dataRead: Reads[DataRead] = Json.reads[DataRead]
-  implicit val data: Reads[Data] = Json.reads[Data]
-  implicit val aggregation: Reads[Aggregation] = Json.reads[Aggregation]
-  implicit val readgroup: Reads[Readgroup] = Json.reads[Readgroup]
-  implicit val library: Reads[Library] = Json.reads[Library]
-  implicit val sample: Reads[Sample] = Json.reads[Sample]
-  implicit val root: Reads[Root] = Json.reads[Root]
+  implicit val dataReadReads: Reads[DataRead] = Json.reads[DataRead]
+  implicit val dataReads: Reads[Data] = Json.reads[Data]
+  implicit val aggregationReads: Reads[Aggregation] = Json.reads[Aggregation]
+  implicit val readgroupReads: Reads[Readgroup] = Json.reads[Readgroup]
+  implicit val libraryReads: Reads[Library] = Json.reads[Library]
+  implicit val sampleReads: Reads[Sample] = Json.reads[Sample]
+  implicit val rootReads: Reads[Root] = Json.reads[Root]
+
+  implicit val positionalHistogramWrites: Writes[PositionalHistogram] =
+    Json.writes[PositionalHistogram]
+  implicit val charCountsWrites: Writes[BaseCounts] = Json.writes[BaseCounts]
+  implicit val LengthHistogramWrites: Writes[LengthHistogram] =
+    Json.writes[LengthHistogram]
+  implicit val aggregationReadWrites: Writes[AggregationRead] =
+    Json.writes[AggregationRead]
+  implicit val dataReadWrites: Writes[DataRead] = Json.writes[DataRead]
+  implicit val dataWrites: Writes[Data] = Json.writes[Data]
+  implicit val aggregationWrites: Writes[Aggregation] = Json.writes[Aggregation]
+  implicit val readgroupWrites: Writes[Readgroup] = Json.writes[Readgroup]
+  implicit val libraryWrites: Writes[Library] = Json.writes[Library]
+  implicit val sampleWrites: Writes[Sample] = Json.writes[Sample]
+  implicit val rootWrites: Writes[Root] = Json.writes[Root]
+
 }

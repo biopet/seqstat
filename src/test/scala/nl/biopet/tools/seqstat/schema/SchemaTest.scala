@@ -28,9 +28,8 @@ import play.api.libs.json._
 class SchemaTest extends BiopetTest {
   @Test
   def testSchema(): Unit = {
-    import Implicts._
 
-    val jsonString: JsValue = Json.parse(
+    val json: JsValue = Json.parse(
       """{
         |"samples": {
         | "sample1": {
@@ -43,7 +42,7 @@ class SchemaTest extends BiopetTest {
         |             "quality_positional_histogram": {"A": [2,4,6]},
         |             "nucleotides_positional_histogram": {"A": [2,4,6]},
         |             "length_histogram": {"5": 5},
-        |             "aggregation": {"max_len": 4, "min_len": 4, "qual_encoding": "sanger", "bases_total": 16, "read_total": 4} }
+        |             "aggregation": {"max_len": 4, "min_len": 4, "max_qual": "!", "min_qual": "J", "qual_encoding": ["Sanger"], "bases_total": 16, "read_total": 4} }
         |           }
         |         }
         |       }
@@ -54,13 +53,6 @@ class SchemaTest extends BiopetTest {
         |}""".stripMargin
     )
 
-    val residentFromJson: JsResult[Root] =
-      Json.fromJson[Root](jsonString)
-
-    residentFromJson match {
-      case JsSuccess(r: Root, path: JsPath) =>
-      case e: JsError =>
-        throw new IllegalStateException(e.errors.mkString("\n"))
-    }
+    Root.fromJson(json)
   }
 }

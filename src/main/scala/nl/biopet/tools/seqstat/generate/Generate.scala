@@ -22,8 +22,10 @@
 package nl.biopet.tools.seqstat.generate
 
 import htsjdk.samtools.fastq.FastqReader
-import nl.biopet.tools.seqstat.{Group, GroupStats}
+import nl.biopet.tools.seqstat.schema.Root
+import nl.biopet.tools.seqstat.{Group, GroupStats, Stats}
 import nl.biopet.utils.tool.ToolCommand
+
 import scala.collection.JavaConversions._
 
 object Generate extends ToolCommand[Args] {
@@ -55,7 +57,9 @@ object Generate extends ToolCommand[Args] {
     }
     readerR1.close()
 
-    //TODO: Write file
+    val root = Root.fromGroupStats(Stats(group, stats) :: Nil)
+
+    root.writeFile(cmdArgs.outputJson)
 
     logger.info("Done")
   }

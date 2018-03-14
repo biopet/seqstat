@@ -23,6 +23,7 @@ package nl.biopet.tools.seqstat
 
 import htsjdk.samtools.fastq.FastqRecord
 import nl.biopet.utils.Logging
+import nl.biopet.utils.ngs.fastq.Encoding
 
 case class GroupStats(r1seq: PositionalHistogram,
                       r1qual: PositionalHistogram,
@@ -109,11 +110,20 @@ object GroupStats {
     val lengtHist = seq.lengthHistogram.countsMap.filter {
       case (_, v) => v > 0
     }
-    schema.AggregationRead(lengtHist.keys.max,
-                           lengtHist.keys.min,
-                           "",
-                           seq.totalReads,
-                           seq.totalBases)
+    val nucHist = qual.valueHistogram.countsMap.filter {
+      case (_, v) => v > 0
+    }
+    schema.AggregationRead(
+      lengtHist.keys.max,
+      lengtHist.keys.min,
+      nucHist.keys.max.toString,
+      nucHist.keys.min.toString,
+      Encoding
+        .possibleEncodings(nucHist.keys.min, nucHist.keys.max)
+        .map(_.name),
+      seq.totalReads,
+      seq.totalBases
+    )
   }
 
   def emptySingle: GroupStats = {

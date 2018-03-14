@@ -23,4 +23,5 @@ package nl.biopet.tools
 
 package object seqstat {
   case class Group(sample: String, library: String, readgroup: String)
+  case class Stats(group: Group, stats: GroupStats)
 }
