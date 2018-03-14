@@ -104,7 +104,7 @@
         
         <h1 id="description" class="section">Description</h1>
         
-        <h4 id="mode-generate" class="section">Mode generate:</h4>
+        <h4 id="mode---generate" class="section">Mode - Generate</h4>
         <p>SeqStats outputs several stats on a FASTQ file.</p>
         <p>Outputted stats:</p>
         <ul>
@@ -139,11 +139,11 @@
           <li>A histogram of the read lengths.</li>
         </ul>
         
-        <h4 id="mode-merge" class="section">Mode merge:</h4>
+        <h4 id="mode---merge" class="section">Mode - Merge</h4>
         <p>This module will merge seqstat files together and keep the sample/library/readgroup structure.
         If required it&#39;s also possible to collapse this, the output file then des not have any sample/library/readgroup structure.</p>
         
-        <h4 id="mode-validate" class="section">Mode validate:</h4>
+        <h4 id="mode---validate" class="section">Mode - Validate</h4>
         <p>A file from SeqStat will validate the input files.
         If aggregation values can not be regenerated the file is considered corrupt.
         This should only happen when the user will edit the seqstat file manual.</p>
@@ -158,20 +158,20 @@
         
         <h1 id="manual" class="section">Manual</h1>
         
-        <h4 id="mode-generate--1" class="section">Mode generate:</h4>
+        <h4 id="mode---generate-1" class="section">Mode - Generate</h4>
         <p>By default stats are outputted to stdout in json format. If an output file
         is specified it writes to the file in json format.</p>
         
-        <h4 id="mode-merge--1" class="section">Mode merge:</h4>
+        <h4 id="mode---merge-1" class="section">Mode - Merge</h4>
         <p>When merging the files SeqStat will validate the input files and the output files.
         If aggregation values can not be regenerated the file is considered corrupt.</p>
         
-        <h4 id="mode-validate--1" class="section">Mode validate:</h4>
+        <h4 id="mode---validate-1" class="section">Mode - Validate</h4>
         <p>See example.</p>
         
         <h2 id="example" class="section">Example</h2>
         
-        <h4 id="mode-generate--2" class="section">Mode generate:</h4>
+        <h4 id="mode---generate-2" class="section">Mode - Generate</h4>
         <p>To run SeqStat and save the output in a JSON file:</p>
         <pre><code>java -jar &lt;SeqStat_jar&gt; generate \
 -i input.fastq \
@@ -180,7 +180,7 @@
 --library &lt;library name&gt; \
 --readgroup &lt;readgroup name&gt;</code></pre>
         
-        <h4 id="mode-merge--2" class="section">Mode merge:</h4>
+        <h4 id="mode---merge-2" class="section">Mode - Merge</h4>
         <p>Merging multiple files:</p>
         <pre><code>java -jar &lt;SeqStat_jar&gt; merge \
 -i &lt;seqstat file&gt; \
@@ -198,7 +198,7 @@
 -o &lt;output file&gt; \
 --combinedOutputFile &lt;output file&gt;</code></pre>
         
-        <h4 id="mode-validate--2" class="section">Mode validate:</h4>
+        <h4 id="mode---validate-2" class="section">Mode - Validate</h4>
         <p>Default:</p>
         <pre><code>java -jar &lt;SeqStat_jar&gt; validate \
 -i &lt;input file&gt;</code></pre>
