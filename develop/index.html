@@ -188,7 +188,51 @@
         <p>See example.</p>
         
         <h2 id="usage" class="section">Usage</h2>
-        <p>Usage for Modes - Generate:</p>
+        <p>Usage for SeqStat:</p>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Option</th>
+              <th>Required</th>
+              <th>Can occur multiple times</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>--log_level, -l</td>
+              <td>no</td>
+              <td>no</td>
+              <td>Level of log information printed. Possible levels: &#39;debug&#39;, &#39;info&#39;, &#39;warn&#39;, &#39;error&#39;</td>
+            </tr>
+            <tr>
+              <td>--help, -h</td>
+              <td>no</td>
+              <td>no</td>
+              <td>Print usage</td>
+            </tr>
+            <tr>
+              <td>--version, -v</td>
+              <td>no</td>
+              <td>no</td>
+              <td>Print version</td>
+            </tr>
+            <tr>
+              <td>toolName</td>
+              <td>no</td>
+              <td>no</td>
+              <td>Name of the tool to execute</td>
+            </tr>
+            <tr>
+              <td>tool args</td>
+              <td>no</td>
+              <td>yes (unlimited)</td>
+              <td>Arguments for the tool</td>
+            </tr>
+          </tbody>
+        </table>
+        
+        <h3 id="usage-for-modes---generate" class="section">Usage for Modes - Generate:</h3>
         <table class="table">
           <thead>
             <tr>
@@ -255,7 +299,8 @@
             </tr>
           </tbody>
         </table>
-        <p>Usage for Modes - Merge:</p>
+        
+        <h3 id="usage-for-modes---merge" class="section">Usage for Modes - Merge:</h3>
         <table class="table">
           <thead>
             <tr>
@@ -304,7 +349,8 @@
             </tr>
           </tbody>
         </table>
-        <p>Usage for Modes - Validate:</p>
+        
+        <h3 id="usage-for-modes---validate" class="section">Usage for Modes - Validate:</h3>
         <table class="table">
           <thead>
             <tr>
