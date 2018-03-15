@@ -38,11 +38,11 @@ class SchemaTest extends BiopetTest {
         |       "readgroups": {
         |         "rg1": {
         |           "seqstat": {"r1": {
-        |             "nucleotides_histogram": {"5": 5},
-        |             "quality_positional_histogram": {"A": [2,4,6]},
-        |             "nucleotides_positional_histogram": {"A": [2,4,6]},
-        |             "length_histogram": {"5": 5},
-        |             "aggregation": {"max_len": 4, "min_len": 4, "max_qual": "!", "min_qual": "J", "qual_encoding": ["Sanger"], "bases_total": 16, "read_total": 4} }
+        |             "nucleotidesHistogram": {"5": 5},
+        |             "qualityPositionalHistogram": {"A": [2,4,6]},
+        |             "nucleotidesPositionalHistogram": {"A": [2,4,6]},
+        |             "lengthHistogram": {"5": 5},
+        |             "aggregation": {"maxLength": 4, "minLength": 4, "maxQuality": "!", "minQuality": "J", "qualityEncoding": ["Sanger"], "basesTotal": 16, "readsTotal": 4} }
         |           }
         |         }
         |       }
