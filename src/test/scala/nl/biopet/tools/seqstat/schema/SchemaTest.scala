@@ -19,20 +19,40 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package nl.biopet.tools.seqstat
+package nl.biopet.tools.seqstat.schema
 
-import nl.biopet.utils.test.tools.ToolTest
-import org.scalatest.mock.MockitoSugar
+import nl.biopet.test.BiopetTest
 import org.testng.annotations.Test
+import play.api.libs.json._
 
-import nl.biopet.utils.tool.multi.Args
-
-class SeqStatTest extends ToolTest[Args] with MockitoSugar {
-  def toolCommand: SeqStat.type = SeqStat
+class SchemaTest extends BiopetTest {
   @Test
-  def testNoArgs(): Unit = {
-    intercept[IllegalArgumentException] {
-      SeqStat.main(Array())
-    }
+  def testSchema(): Unit = {
+
+    val json: JsValue = Json.parse(
+      """{
+        |"samples": {
+        | "sample1": {
+        |   "libraries": {
+        |     "lib1": {
+        |       "readgroups": {
+        |         "rg1": {
+        |           "seqstat": {"r1": {
+        |             "nucleotides_histogram": {"5": 5},
+        |             "quality_positional_histogram": {"A": [2,4,6]},
+        |             "nucleotides_positional_histogram": {"A": [2,4,6]},
+        |             "length_histogram": {"5": 5},
+        |             "aggregation": {"max_len": 4, "min_len": 4, "max_qual": "!", "min_qual": "J", "qual_encoding": ["Sanger"], "bases_total": 16, "read_total": 4} }
+        |           }
+        |         }
+        |       }
+        |     }
+        |   }
+        | }
+        |}
+        |}""".stripMargin
+    )
+
+    Root.fromJson(json)
   }
 }

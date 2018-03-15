@@ -19,20 +19,39 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package nl.biopet.tools.seqstat
+package nl.biopet.tools.seqstat.validate
 
-import nl.biopet.utils.test.tools.ToolTest
-import org.scalatest.mock.MockitoSugar
-import org.testng.annotations.Test
+import nl.biopet.tools.seqstat.SeqStat
+import nl.biopet.tools.seqstat.schema.Root
+import nl.biopet.utils.tool.ToolCommand
 
-import nl.biopet.utils.tool.multi.Args
+object Validate extends ToolCommand[Args] {
+  def emptyArgs: Args = Args()
+  def argsParser = new ArgsParser(this)
 
-class SeqStatTest extends ToolTest[Args] with MockitoSugar {
-  def toolCommand: SeqStat.type = SeqStat
-  @Test
-  def testNoArgs(): Unit = {
-    intercept[IllegalArgumentException] {
-      SeqStat.main(Array())
-    }
+  def main(args: Array[String]): Unit = {
+    val cmdArgs = cmdArrayToArgs(args)
+
+    Root.fromFile(cmdArgs.inputFile).validate()
+
+    logger.info("Done")
   }
+
+  def descriptionText: String =
+    s"""
+      |A file from ${SeqStat.toolName} will validate the input files.
+      |If aggregation values can not be regenerated the file is considered corrupt.
+      |This should only happen when the user will edit the seqstat file manual.
+    """.stripMargin
+
+  def manualText: String =
+    s"""
+      |See example.
+    """.stripMargin
+
+  def exampleText: String =
+    s"""
+       |Default:
+       |${SeqStat.example("validate", "-i", "<input file>")}
+     """.stripMargin
 }

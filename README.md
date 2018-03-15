@@ -1,6 +1,8 @@
 # SeqStat
 
 
+#### Mode - Generate
+
 SeqStats outputs several stats on a FASTQ file.
 
 Outputted stats:
@@ -11,13 +13,28 @@ Outputted stats:
    - Number of each nucleotide
 - Reads
    - Total number
-   - Number of reads with 'N' bases
    - minimum length
    - maximum length
    - A histogram of the average base qualities
    - The quality encoding (Sanger, solexa etc.)
    - A histogram of the read lengths.
     
+        
+
+#### Mode - Merge
+
+This module will merge seqstat files together and keep the sample/library/readgroup structure.
+If required it's also possible to collapse this, the output file then des not have any sample/library/readgroup structure.
+    
+        
+
+#### Mode - Validate
+
+A file from SeqStat will validate the input files.
+If aggregation values can not be regenerated the file is considered corrupt.
+This should only happen when the user will edit the seqstat file manual.
+    
+        
 
 # Documentation
 

@@ -21,18 +21,25 @@
 
 package nl.biopet.tools.seqstat
 
-import nl.biopet.utils.test.tools.ToolTest
-import org.scalatest.mock.MockitoSugar
-import org.testng.annotations.Test
+package object schema {
 
-import nl.biopet.utils.tool.multi.Args
-
-class SeqStatTest extends ToolTest[Args] with MockitoSugar {
-  def toolCommand: SeqStat.type = SeqStat
-  @Test
-  def testNoArgs(): Unit = {
-    intercept[IllegalArgumentException] {
-      SeqStat.main(Array())
-    }
-  }
+  case class Sample(libraries: Map[String, Library],
+                    seqstat: Option[Aggregation]) {}
+  case class Library(readgroups: Map[String, Readgroup],
+                     seqstat: Option[Aggregation]) {}
+  case class Readgroup(seqstat: Data)
+  case class Aggregation(r1: AggregationRead, r2: Option[AggregationRead])
+  case class AggregationRead(max_len: Int,
+                             min_len: Int,
+                             max_qual: String,
+                             min_qual: String,
+                             qual_encoding: List[String],
+                             read_total: Long,
+                             bases_total: Long)
+  case class DataRead(
+      nucleotides_positional_histogram: Map[String, Array[Long]],
+      quality_positional_histogram: Map[String, Array[Long]],
+      length_histogram: Map[String, Long],
+      nucleotides_histogram: Map[String, Long],
+      aggregation: AggregationRead)
 }

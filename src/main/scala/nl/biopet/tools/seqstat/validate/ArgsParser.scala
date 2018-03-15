@@ -19,20 +19,18 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package nl.biopet.tools.seqstat
+package nl.biopet.tools.seqstat.validate
 
-import nl.biopet.utils.test.tools.ToolTest
-import org.scalatest.mock.MockitoSugar
-import org.testng.annotations.Test
+import java.io.File
 
-import nl.biopet.utils.tool.multi.Args
+import nl.biopet.utils.tool.{AbstractOptParser, ToolCommand}
 
-class SeqStatTest extends ToolTest[Args] with MockitoSugar {
-  def toolCommand: SeqStat.type = SeqStat
-  @Test
-  def testNoArgs(): Unit = {
-    intercept[IllegalArgumentException] {
-      SeqStat.main(Array())
-    }
-  }
+class ArgsParser(toolCommand: ToolCommand[Args])
+    extends AbstractOptParser[Args](toolCommand) {
+
+  opt[File]('i', "inputFile")
+    .required()
+    .valueName("<seqstat file>")
+    .action((x, c) => c.copy(inputFile = x))
+    .text("File to validate schema")
 }

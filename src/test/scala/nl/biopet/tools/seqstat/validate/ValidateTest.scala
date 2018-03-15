@@ -19,20 +19,21 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package nl.biopet.tools.seqstat
+package nl.biopet.tools.seqstat.validate
 
 import nl.biopet.utils.test.tools.ToolTest
-import org.scalatest.mock.MockitoSugar
 import org.testng.annotations.Test
 
-import nl.biopet.utils.tool.multi.Args
+class ValidateTest extends ToolTest[Args] {
+  def toolCommand: Validate.type = Validate
 
-class SeqStatTest extends ToolTest[Args] with MockitoSugar {
-  def toolCommand: SeqStat.type = SeqStat
+  override def minExampleWords = 10
+  override def minManualWords = 0
+
   @Test
   def testNoArgs(): Unit = {
     intercept[IllegalArgumentException] {
-      SeqStat.main(Array())
+      Validate.main(Array())
     }
   }
 }

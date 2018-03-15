@@ -19,11 +19,10 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package nl.biopet.tools.seqstat
+package nl.biopet.tools.seqstat.merge
 
-object FqEncoding extends Enumeration {
-  type FqEncoding = Value
-  val Sanger = Value(33, "Sanger")
-  val Solexa = Value(64, "Solexa")
-  val Unknown = Value(0, "Unknown")
-}
+import java.io.File
+
+case class Args(inputFiles: List[File] = Nil,
+                outputFile: Option[File] = None,
+                combineOutputFile: Option[File] = None)
