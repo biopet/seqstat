@@ -164,8 +164,4 @@ object PositionalHistogram {
   }
 
   def empty: PositionalHistogram = new PositionalHistogram()
-
-  def apply(content: JsValue): PositionalHistogram = fromJson(content)
-
-  def unapply(arg: PositionalHistogram): Option[JsValue] = Some(arg.toJson)
 }
