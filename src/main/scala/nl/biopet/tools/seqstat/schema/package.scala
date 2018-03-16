@@ -24,9 +24,9 @@ package nl.biopet.tools.seqstat
 package object schema {
 
   case class Sample(libraries: Map[String, Library],
-                    seqstat: Option[Aggregation]) {}
+                    seqstat: Option[Aggregation])
   case class Library(readgroups: Map[String, Readgroup],
-                     seqstat: Option[Aggregation]) {}
+                     seqstat: Option[Aggregation])
   case class Readgroup(seqstat: Data)
   case class Aggregation(r1: AggregationRead, r2: Option[AggregationRead])
   case class AggregationRead(maxLength: Int,
