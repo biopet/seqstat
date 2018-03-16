@@ -36,10 +36,9 @@ package object schema {
                              qualityEncoding: List[String],
                              readsTotal: Long,
                              basesTotal: Long)
-  case class DataRead(
-                       nucleotidesPositionalHistogram: Map[String, Array[Long]],
-                       qualityPositionalHistogram: Map[String, Array[Long]],
-                       lengthHistogram: Map[String, Long],
-                       nucleotidesHistogram: Map[String, Long],
-                       aggregation: AggregationRead)
+  case class DataRead(nucleotidesPositionalHistogram: Map[String, Array[Long]],
+                      qualityPositionalHistogram: Map[String, Array[Long]],
+                      lengthHistogram: Map[String, Long],
+                      nucleotidesHistogram: Map[String, Long],
+                      aggregation: AggregationRead)
 }
