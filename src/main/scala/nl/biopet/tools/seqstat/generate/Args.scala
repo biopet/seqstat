@@ -19,8 +19,13 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package nl.biopet.tools.seqstat
+package nl.biopet.tools.seqstat.generate
 
 import java.io.File
 
-case class Args(fastq: File = null, outputJson: Option[File] = None)
+case class Args(fastqR1: File = null,
+                fastqR2: Option[File] = None,
+                outputJson: File = null,
+                sample: String = null,
+                library: String = null,
+                readgroup: String = null)

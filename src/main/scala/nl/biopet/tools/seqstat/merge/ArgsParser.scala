@@ -19,20 +19,27 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package nl.biopet.tools.seqstat
+package nl.biopet.tools.seqstat.merge
 
-import nl.biopet.utils.test.tools.ToolTest
-import org.scalatest.mock.MockitoSugar
-import org.testng.annotations.Test
+import java.io.File
 
-import nl.biopet.utils.tool.multi.Args
+import nl.biopet.utils.tool.{AbstractOptParser, ToolCommand}
 
-class SeqStatTest extends ToolTest[Args] with MockitoSugar {
-  def toolCommand: SeqStat.type = SeqStat
-  @Test
-  def testNoArgs(): Unit = {
-    intercept[IllegalArgumentException] {
-      SeqStat.main(Array())
-    }
-  }
+class ArgsParser(toolCommand: ToolCommand[Args])
+    extends AbstractOptParser[Args](toolCommand) {
+
+  opt[File]('i', "inputFile")
+    .required()
+    .unbounded()
+    .valueName("<seqstat file>")
+    .action((x, c) => c.copy(inputFiles = x :: c.inputFiles))
+    .text("Files to merge into a single file")
+  opt[File]('o', "outputFile")
+    .valueName("<seqstat file>")
+    .action((x, c) => c.copy(outputFile = Some(x)))
+    .text("Output file")
+  opt[File]("combinedOutputFile")
+    .valueName("<seqstat file>")
+    .action((x, c) => c.copy(combineOutputFile = Some(x)))
+    .text("Combined output file")
 }

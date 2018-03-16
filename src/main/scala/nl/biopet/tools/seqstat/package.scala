@@ -19,19 +19,9 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package nl.biopet.tools.seqstat
+package nl.biopet.tools
 
-import java.io.File
-
-import nl.biopet.utils.tool.{AbstractOptParser, ToolCommand}
-
-class ArgsParser(toolCommand: ToolCommand[Args])
-    extends AbstractOptParser[Args](toolCommand) {
-
-  opt[File]('i', "fastq") required () valueName "<fastq>" action { (x, c) =>
-    c.copy(fastq = x)
-  } text "FastQ file to generate stats from"
-  opt[File]('o', "output") valueName "<json>" action { (x, c) =>
-    c.copy(outputJson = Some(x))
-  } text "File to write output to, if not supplied output go to stdout"
+package object seqstat {
+  case class Group(sample: String, library: String, readgroup: String)
+  case class Stats(group: Group, stats: GroupStats)
 }
