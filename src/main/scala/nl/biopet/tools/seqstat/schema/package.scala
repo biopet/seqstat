@@ -24,22 +24,21 @@ package nl.biopet.tools.seqstat
 package object schema {
 
   case class Sample(libraries: Map[String, Library],
-                    seqstat: Option[Aggregation]) {}
+                    seqstat: Option[Aggregation])
   case class Library(readgroups: Map[String, Readgroup],
-                     seqstat: Option[Aggregation]) {}
+                     seqstat: Option[Aggregation])
   case class Readgroup(seqstat: Data)
   case class Aggregation(r1: AggregationRead, r2: Option[AggregationRead])
-  case class AggregationRead(max_len: Int,
-                             min_len: Int,
-                             max_qual: String,
-                             min_qual: String,
-                             qual_encoding: List[String],
-                             read_total: Long,
-                             bases_total: Long)
-  case class DataRead(
-      nucleotides_positional_histogram: Map[String, Array[Long]],
-      quality_positional_histogram: Map[String, Array[Long]],
-      length_histogram: Map[String, Long],
-      nucleotides_histogram: Map[String, Long],
-      aggregation: AggregationRead)
+  case class AggregationRead(maxLength: Int,
+                             minLength: Int,
+                             maxQuality: String,
+                             minQuality: String,
+                             qualityEncoding: List[String],
+                             readsTotal: Long,
+                             basesTotal: Long)
+  case class DataRead(nucleotidesPositionalHistogram: Map[String, Array[Long]],
+                      qualityPositionalHistogram: Map[String, Array[Long]],
+                      lengthHistogram: Map[String, Long],
+                      nucleotidesHistogram: Map[String, Long],
+                      aggregation: AggregationRead)
 }

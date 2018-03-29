@@ -31,11 +31,11 @@ import nl.biopet.tools.seqstat.schema.Implicts._
 case class Data(r1: DataRead, r2: Option[DataRead]) {
   def asGroupStats: GroupStats = {
     GroupStats(
-      PositionalHistogram.fromMap(r1.nucleotides_positional_histogram),
-      PositionalHistogram.fromMap(r1.quality_positional_histogram),
+      PositionalHistogram.fromMap(r1.nucleotidesPositionalHistogram),
+      PositionalHistogram.fromMap(r1.qualityPositionalHistogram),
       r2.map(r =>
-        PositionalHistogram.fromMap(r.nucleotides_positional_histogram)),
-      r2.map(r => PositionalHistogram.fromMap(r.quality_positional_histogram))
+        PositionalHistogram.fromMap(r.nucleotidesPositionalHistogram)),
+      r2.map(r => PositionalHistogram.fromMap(r.qualityPositionalHistogram))
     )
   }
 
@@ -43,13 +43,13 @@ case class Data(r1: DataRead, r2: Option[DataRead]) {
     val groupStats = asGroupStats
     require(groupStats.r1seq.lengthHistogram.countsMap.map {
       case (k, v) => k.toString -> v
-    } == r1.length_histogram)
+    } == r1.lengthHistogram)
     require(groupStats.r1qual.lengthHistogram.countsMap.map {
       case (k, v) => k.toString -> v
-    } == r1.length_histogram)
+    } == r1.lengthHistogram)
     require(groupStats.r1seq.valueHistogram.countsMap.map {
       case (k, v) => k.toString -> v
-    } == r1.nucleotides_histogram)
+    } == r1.nucleotidesHistogram)
     require(r1.aggregation == GroupStats.createAggregation(groupStats.r1seq,
                                                            groupStats.r1qual),
             "Aggregation R1 does not match")
@@ -58,13 +58,13 @@ case class Data(r1: DataRead, r2: Option[DataRead]) {
       case (Some(r2Data), Some(r2seq), Some(r2qual)) =>
         require(r2seq.lengthHistogram.countsMap.map {
           case (k, v) => k.toString -> v
-        } == r2Data.length_histogram)
+        } == r2Data.lengthHistogram)
         require(r2qual.lengthHistogram.countsMap.map {
           case (k, v) => k.toString -> v
-        } == r2Data.length_histogram)
+        } == r2Data.lengthHistogram)
         require(r2seq.valueHistogram.countsMap.map {
           case (k, v) => k.toString -> v
-        } == r2Data.nucleotides_histogram)
+        } == r2Data.nucleotidesHistogram)
 
         require(
           r2Data.aggregation == GroupStats.createAggregation(r2seq, r2qual),

@@ -78,15 +78,9 @@ class MergeTest extends ToolTest[Args] {
     val seqstats = root.readgroups.map { case (_, v) => v.seqstat }.toList
     assert(seqstats.forall(_.asGroupStats.isPaired))
     seqstats.size shouldBe 1
-    seqstats.head.r2.isDefined shouldBe true
-    seqstats.head.r1.aggregation shouldBe AggregationRead(
-      4,
-      4,
-      "A",
-      "!",
-      List("Sanger", "Illumina 1.8+"),
-      2,
-      8)
+    seqstats.headOption.map(_.r2.isDefined) shouldBe Some(true)
+    seqstats.headOption.map(_.r1.aggregation) shouldBe Some(
+      AggregationRead(4, 4, "A", "!", List("Sanger", "Illumina 1.8+"), 2, 8))
   }
 
   @Test
@@ -118,14 +112,8 @@ class MergeTest extends ToolTest[Args] {
     assert(seqstats.forall(_.asGroupStats.isPaired))
     root.samples.size shouldBe 2
     seqstats.size shouldBe 2
-    seqstats.head.r2.isDefined shouldBe true
-    seqstats.head.r1.aggregation shouldBe AggregationRead(
-      4,
-      4,
-      "A",
-      "!",
-      List("Sanger", "Illumina 1.8+"),
-      2,
-      8)
+    seqstats.headOption.map(_.r2.isDefined) shouldBe Some(true)
+    seqstats.headOption.map(_.r1.aggregation) shouldBe Some(
+      AggregationRead(4, 4, "A", "!", List("Sanger", "Illumina 1.8+"), 2, 8))
   }
 }

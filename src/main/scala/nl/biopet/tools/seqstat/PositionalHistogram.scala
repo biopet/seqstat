@@ -157,9 +157,13 @@ object PositionalHistogram {
   def fromMap(map: Map[String, Array[Long]]): PositionalHistogram = {
     new PositionalHistogram(mutable.Map() ++ map.map {
       case (k, v) =>
-        k.head -> new Histogram(v.zipWithIndex.map {
-          case (l, idx) => idx -> l
-        }.toMap)
+        if (k.length > 1)
+          throw new IllegalStateException("Only a single character is allowed")
+        k.headOption
+          .map(_ -> new Histogram(v.zipWithIndex.map {
+            case (l, idx) => idx -> l
+          }.toMap))
+          .getOrElse(throw new IllegalStateException("Empty string found"))
     })
   }
 

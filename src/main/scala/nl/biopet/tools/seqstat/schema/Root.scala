@@ -24,8 +24,7 @@ package nl.biopet.tools.seqstat.schema
 import java.io.File
 
 import nl.biopet.tools.seqstat.{Group, Stats}
-import nl.biopet.utils.io
-import nl.biopet.utils.conversions
+import nl.biopet.utils.{conversions, io}
 import play.api.libs.json._
 import nl.biopet.tools.seqstat.schema.Implicts._
 
