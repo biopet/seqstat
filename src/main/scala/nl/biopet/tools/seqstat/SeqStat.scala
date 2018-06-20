@@ -34,7 +34,13 @@ object SeqStat extends MultiToolCommand {
 
   override def extendedUsage = true
 
-  def descriptionText: String = extendedDescriptionText
+  def descriptionText: String =
+    s"""$toolName is a package that contains tools
+       |to generate stats from a FastQ file,
+       |merge those stats for multiple samples,
+       |and validate the generated stats files.
+       |
+     """.stripMargin + extendedDescriptionText
   def manualText: String = extendedManualText
   def exampleText: String = extendedExampleText
 }
