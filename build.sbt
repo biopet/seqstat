@@ -3,7 +3,7 @@ organizationName := "Biopet"
 
 startYear := Some(2014)
 
-name := "seqstat"
+name := "SeqStat"
 biopetUrlName := "seqstat"
 
 biopetIsTool := true
