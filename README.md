@@ -1,9 +1,14 @@
 # SeqStat
 
+SeqStat is a package that contains tools
+to generate stats from a FastQ file,
+merge those stats for multiple samples,
+and validate the generated stats files.
 
+     
 #### Mode - Generate
 
-SeqStats outputs several stats on a FASTQ file.
+Generate outputs several stats on a FASTQ file.
 
 Outputted stats:
 
@@ -32,7 +37,7 @@ If required it's also possible to collapse this, the output file then des not ha
 
 A file from SeqStat will validate the input files.
 If aggregation values can not be regenerated the file is considered corrupt.
-This should only happen when the user will edit the seqstat file manual.
+This should only happen when the user will edit the seqstat file manually.
     
         
 
