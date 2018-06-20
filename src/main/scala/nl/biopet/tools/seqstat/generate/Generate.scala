@@ -67,7 +67,7 @@ object Generate extends ToolCommand[Args] {
 
   def descriptionText: String =
     """
-      |SeqStats outputs several stats on a FASTQ file.
+      |Generate outputs several stats on a FASTQ file.
       |
       |Outputted stats:
       |

@@ -41,7 +41,7 @@ object Validate extends ToolCommand[Args] {
     s"""
       |A file from ${SeqStat.toolName} will validate the input files.
       |If aggregation values can not be regenerated the file is considered corrupt.
-      |This should only happen when the user will edit the seqstat file manual.
+      |This should only happen when the user will edit the seqstat file manually.
     """.stripMargin
 
   def manualText: String =
