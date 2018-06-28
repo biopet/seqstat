@@ -1,1 +1,1 @@
-addSbtPlugin("com.github.biopet" % "sbt-biopet" % "0.7")
+addSbtPlugin("com.github.biopet" % "sbt-biopet" % "0.8")
