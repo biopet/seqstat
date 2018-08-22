@@ -24,6 +24,7 @@ package nl.biopet.tools.seqstat
 import htsjdk.samtools.fastq.FastqRecord
 import nl.biopet.utils.Logging
 import nl.biopet.utils.ngs.fastq.Encoding
+import nl.biopet.utils.ngs.fastq.validation.checkMate
 
 case class GroupStats(r1seq: PositionalHistogram,
                       r1qual: PositionalHistogram,
@@ -32,12 +33,8 @@ case class GroupStats(r1seq: PositionalHistogram,
     extends Logging {
 
   def addFastqRecords(r1: FastqRecord, r2: Option[FastqRecord] = None): Unit = {
-    r2.foreach(
-      r2 =>
-        require(r2.getReadName
-                  .split(" ")
-                  .headOption == r1.getReadName.split(" ").headOption,
-                "R1 and R2 seems to be out of sync"))
+    r2.foreach(r2 =>
+      require(checkMate(r1, r2), "R1 and R2 seem to be out of sync"))
     addFragment(r1.getReadString,
                 r1.getBaseQualityString,
                 r2.map(_.getReadString),
