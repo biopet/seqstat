@@ -19,6 +19,15 @@ developers := List(
 
 scalaVersion := "2.11.12"
 
+biocondaTestCommands := Seq(
+  "biopet-seqstat Merge --help",
+  "biopet-seqstat Merge --version",
+  "biopet-seqstat Generate --help",
+  "biopet-seqstat Generate --version",
+  "biopet-seqstat Validate --help",
+  "biopet-seqstat Validate --version"
+)
+
 libraryDependencies += "com.github.biopet" %% "common-utils" % "0.7"
 libraryDependencies += "com.github.biopet" %% "tool-utils" % "0.5"
 libraryDependencies += "com.github.biopet" %% "tool-test-utils" % "0.2.2" % Test
