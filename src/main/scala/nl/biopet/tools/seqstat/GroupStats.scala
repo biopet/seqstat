@@ -34,7 +34,7 @@ case class GroupStats(r1seq: PositionalHistogram,
 
   def addFastqRecords(r1: FastqRecord, r2: Option[FastqRecord] = None): Unit = {
     r2.foreach(r2 =>
-      require(checkMate(r1, r2), "R1 and R2 seems to be out of sync"))
+      require(checkMate(r1, r2), "R1 and R2 seem to be out of sync"))
     addFragment(r1.getReadString,
                 r1.getBaseQualityString,
                 r2.map(_.getReadString),
