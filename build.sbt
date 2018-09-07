@@ -28,7 +28,7 @@ biocondaTestCommands := Seq(
   "biopet-seqstat Validate --version"
 )
 
-libraryDependencies += "com.github.biopet" %% "common-utils" % "0.7"
-libraryDependencies += "com.github.biopet" %% "tool-utils" % "0.5"
-libraryDependencies += "com.github.biopet" %% "tool-test-utils" % "0.2.2" % Test
-libraryDependencies += "com.github.biopet" %% "ngs-utils" % "0.5"
+libraryDependencies += "com.github.biopet" %% "common-utils" % "0.8"
+libraryDependencies += "com.github.biopet" %% "tool-utils" % "0.6"
+libraryDependencies += "com.github.biopet" %% "tool-test-utils" % "0.3"
+libraryDependencies += "com.github.biopet" %% "ngs-utils" % "0.6"
